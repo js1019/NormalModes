@@ -1,0 +1,20 @@
+#---------- working directory
+
+#---------- modules ----------
+#module purge
+
+# for gnu on Stampede2
+#module unload intel 
+#module unload impi
+#module load gcc 
+#module load impi
+#module load mkl
+#module load valgrind
+
+# for intel Stampede2
+module unload gcc 
+module unload impi
+module load intel 
+module load impi
+
+

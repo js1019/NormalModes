@@ -1,0 +1,106 @@
+HOME          = /work/04149/tg834482/stampede2/solver/GNU
+PARMETIS      = $(HOME)/parmetis-4.0.3
+
+EVSL_DIR      = $(HOME)/pEVSL_JS_cH
+LIBEVSL       = -L$(EVSL_DIR) -lpevsl  
+iterobj       = $(EVSL_DIR)/EXTERNAL/ITERSOL/chebiter.o
+
+
+#  The platform identifier to suffix to the end of library names
+#
+PLAT          = stampede2
+
+# lapack and blas
+#MKLPATH   =  /apps/rhel6/intel/composer_xe_2013.3.163/mkl/lib/intel64
+LINKS     = -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a \
+           ${MKLROOT}/lib/intel64/libmkl_gnu_thread.a ${MKLROOT}/lib/intel64/libmkl_core.a \
+           ${MKLROOT}/lib/intel64/libmkl_blacs_intelmpi_lp64.a -Wl,--end-group -lgomp -lpthread -lm -ldl
+
+#LINKS     := /home/shi126/solver/OpenBLAS/libopenblas.a
+
+
+IMETIS = -I$(PARMETIS)/build/Linux-x86_64/metis/include 
+IPARMETIS = -I$(PARMETIS)/include
+
+#------------------------------------------------------------------
+# links of metis 
+#
+LMETIS    = -L$(PARMETIS)/build/Linux-x86_64/libmetis -lmetis
+LParMETIS = -L$(PARMETIS)/build/Linux-x86_64/libparmetis -lparmetis
+LORDERINGS = $(LParMETIS) $(LMETIS) -lpthread
+OPTL     =  -O3 -fopenmp
+ 
+#-----------------------------------------------------------------
+
+#FDEBUG = -O0 -c -g -fbacktrace 
+FDEBUG = -c
+
+#  Make our own suffixes' list.
+#
+.SUFFIXES:
+.SUFFIXES:	.f	.o
+.SUFFIXES:	.F	.f
+.SUFFIXES:	.f90	.o
+#
+#  Default command.
+#
+.DEFAULT:
+	@$(ECHO) "Unknown target $@, try:  make help"
+
+#
+#  Command to build .o files from .f files.
+#
+.f90.o:
+	@$(ECHO) Making $@ from $<
+	@$(FC) -c $(FIFLAGS) $<
+
+FC	= mpif90
+FFLAGS	= -O3 #-cg89
+
+# Set the parallel fortran compiler
+PFC     = mpif90 #mpif90 #mpiifort
+PFFLAGS = -O #-cg89
+
+PCC      = mpicc
+
+LDFLAGS = $(LINKS) 
+CD	= cd
+AR      = ar
+
+CHMOD	 = chmod
+CHFLAGS	 = -f
+
+COMPRESS = compress
+
+CP	 = cp
+
+#  To find the path for cpp, try `man cpp', and it should list the path
+#  at the top, under `Syntax'.  It is usually in /lib.
+CPP	 = /lib/cpp
+CPPFLAGS =
+
+ECHO	 = echo
+
+LN	 = ln
+LNFLAGS	 = -s
+
+MAKE	 = /usr/bin/make
+
+MKDIR	 = mkdir
+MDFLAGS	 = -p
+
+MV	 = mv
+MVFLAGS	 = -f
+
+RM	 = rm
+RMFLAGS  = -f
+
+SHELL	 = /bin/sh
+
+TAR	 = tar
+
+#  For System V based machine without ranlib, like Cray and SGI, 
+#  use touch instead.
+#RANLIB   = touch
+RANLIB   = ranlib
+
