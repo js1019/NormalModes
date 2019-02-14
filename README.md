@@ -27,4 +27,4 @@ The repository provides scripts to generate planetary models for [the SuperCompu
 
 
 ## Contact 
-Please report issues under this repository. If you have comments and suggestions, please reach me at jia.shi@rice.edu. 
+Please report issues under this repository. Please send your suggestions and comments to jia.shi@rice.edu. 
