@@ -1,0 +1,3 @@
+pnm_find_lsurf
+
+warning: if npro/Ntet is high (~0.5), it might be a problem
