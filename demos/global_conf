@@ -1,0 +1,22 @@
+# JOB: normal modes modelling:
+# 1 without gravity
+# 2 with reference gravity
+JOB         = 1
+basename    = CONST_1L_3k.1
+#basename    = prem_3L_3k.1
+#Pudue server
+inputdir   = models/input/CONST3k/
+outputdir  = models/output/CONST3k/ 
+#inputdir   = models/input/PREM3k/
+#outputdir  = models/output/PREM3k/ 
+ 
+CGMethod = .TRUE.
+
+#numofevs    = 50
+#frequency   = 0.7 #0.00001 #1.3 #4.8 #1.238    # shift frequncy in mHz
+lowfreq      = 0.1 # mHz 
+upfreq       = 1.0 # mHz
+pOrder       = 1   # order of polynomial basis
+
+
+
