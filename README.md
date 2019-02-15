@@ -40,7 +40,7 @@ We show several modes that are computed from this work: [0S2](https://www.youtub
 [1T11](https://www.youtube.com/watch?v=XWY_dNAYAjE&index=6&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s). 
 
 Here is the 3S9 mode: 
-<img src="figs/PREM3S9.gif">
+![alt](PREM3S9.gif) ![alt](PREM1T11.gif)
 
 
 ## Reference
