@@ -1,6 +1,6 @@
 # Normal Modes at Planetary Scales
 
-This repository provide a highly parallel algorithm to compute the planetary normal modes. 
+This repository provides a highly parallel algorithm to compute the planetary normal modes. 
 The elastic gravitational system is discretized using the Continous Galerkin mixed finite element method. 
 A Lanczos approach with polynomial filtering is utiilzed for solving 
 the resulting generalized eigenvalue problem. 
@@ -42,6 +42,8 @@ You may then go to src/ and type
 ~~~
 make clean; make; 
 ~~~
+
+## How to run this application? 
 
 
 ## Reference
