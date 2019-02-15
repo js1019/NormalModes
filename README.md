@@ -32,7 +32,7 @@ make config; make;
 You may use this  version for planetary normal mode computation. 
 Please edit makefile.in for your cluster. 
 We recommand users to use MKL. 
-If you do not have MKL, we recommand users to use Openblas or Gotolabs. 
+If you do not have MKL, we recommand users to use Openblas or Gotoblas. 
 
 
 **This software**: once ParMetis and pEVSL are installed, you may install this software. 
