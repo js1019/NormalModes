@@ -2,13 +2,33 @@
 
 This repository provide a highly parallel algorithm to compute the planetary normal modes. 
 The elastic gravitational system is discretized using the Continous Galerkin mixed finite element method. 
-A highly parallel Lanczos approach with polynomial filtering is utiilzed for solving 
+A Lanczos approach with polynomial filtering is utiilzed for solving 
 the resulting generalized eigenvalue problem. 
 
-Self-gravitation and rotation will be included in the future release. 
+_Self-gravitation and rotation will be included in the future release._ 
 
 ## How to intall it? 
-Prerequisite: MPI, ParMetis, pEVSL.
+**Prerequisite**: MPI, [ParMetis](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download) and [pEVSL](https://github.com/eigs/pEVSL). Intel Math Kernal Library (MKL) is recommanded to use pEVSL. 
+
+Parallel Graph Partitioning (ParMetis) is used for domain decomposition. To install ParMetis, you need have CMake installed and need to edit metis/includemetis.h 
+**change IDXTYPEWIDTH to 64**. You then do 
+~~~
+make config; make;
+~~~
+
+Parallel EigenValue Slicing (pEVSL) is used to solve the generalized eigenvalue problem. 
+You may use this [pEVSL](https://github.com/js1019/pEVSL) version for planetary normal mode computation. 
+Please edit makefile.in for your cluster. 
+We recommand users to use MKL. 
+If you do not have MKL, we recommand users to use Openblas or gotolabs. 
+
+Once ParMetis and pEVSL are install, you main install this software. 
+Please edit makefile.in for right paths. 
+We have two makefile.in examples for GNU and Intel compiler users. 
+You may then go to src/ and type 
+~~~
+make clean; make; 
+~~~
 
 
 ## Reference
