@@ -1,6 +1,8 @@
 ## How to use this demo? 
 
 Once you compiled the code. You should be able to run this demo. 
+We have a script `Dev.sh` to run this code via using SLURM. 
+You can set up the number of MPI processes and threads, etc. 
 
 It provides two test examples. 
 One is a constant solid elastic ball in models/input/CONST3k/. 
