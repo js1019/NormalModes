@@ -22,7 +22,7 @@ Please edit makefile.in for your cluster.
 We recommand users to use MKL. 
 If you do not have MKL, we recommand users to use Openblas or Gotolabs. 
 
------------------------------------------------------------------------
+======================================================================
 Once ParMetis and pEVSL are installed, you may install this software. 
 Please edit makefile.in for right paths. 
 We have two makefile.in examples for GNU and Intel compiler users. 
@@ -30,9 +30,11 @@ You may then go to src/ and type
 ~~~
 make clean; make; 
 ~~~
+======================================================================
+
 
 ## Normal Modes 
-We visualized several modes that are computed from this work: [0S2](https://www.youtube.com/watch?v=DDfGHmqCMN0&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&index=5&t=0s), 
+We show several modes that are computed from this work: [0S2](https://www.youtube.com/watch?v=DDfGHmqCMN0&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&index=5&t=0s), 
 [0T2](https://www.youtube.com/watch?v=hxeDz8ncNH4), 
 [3S9](https://www.youtube.com/watch?v=YR6N3AOTwoU&index=7&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s) and
 [1T11](https://www.youtube.com/watch?v=XWY_dNAYAjE&index=6&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s). 
