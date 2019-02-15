@@ -8,21 +8,21 @@ the resulting generalized eigenvalue problem.
 _Self-gravitation and rotation will be included in the future release._ 
 
 ## How to intall it? 
-**Prerequisite**: MPI, [ParMetis](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download) and [pEVSL](https://github.com/eigs/pEVSL). Intel Math Kernal Library (MKL) is recommanded to use pEVSL. 
+**Prerequisite**: MPI, ParMetis and pEVSL. Intel Math Kernal Library (MKL) is recommanded to use pEVSL. 
 
-Parallel Graph Partitioning (ParMetis) is used for domain decomposition. To install ParMetis, you need have CMake installed and need to edit metis/includemetis.h 
-**change IDXTYPEWIDTH to 64**. You then do 
+**Parallel Graph Partitioning** ([ParMetis](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download)) is used for domain decomposition. To install ParMetis, you need have CMake installed and need to edit metis/includemetis.h 
+change **IDXTYPEWIDTH** to **64**. You then do 
 ~~~
 make config; make;
 ~~~
 
-Parallel EigenValue Slicing (pEVSL) is used to solve the generalized eigenvalue problem. 
-You may use this [pEVSL](https://github.com/js1019/pEVSL) version for planetary normal mode computation. 
+**Parallel EigenValue Slicing** ([pEVSL](https://github.com/js1019/pEVSL)) is used to solve the generalized eigenvalue problem. 
+You may use this  version for planetary normal mode computation. 
 Please edit makefile.in for your cluster. 
 We recommand users to use MKL. 
-If you do not have MKL, we recommand users to use Openblas or gotolabs. 
+If you do not have MKL, we recommand users to use Openblas or Gotolabs. 
 
-Once ParMetis and pEVSL are install, you main install this software. 
+Once ParMetis and pEVSL are installed, you may install this software. 
 Please edit makefile.in for right paths. 
 We have two makefile.in examples for GNU and Intel compiler users. 
 You may then go to src/ and type 
