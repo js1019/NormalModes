@@ -7,7 +7,17 @@ the resulting generalized eigenvalue problem.
 
 _Self-gravitation and rotation will be included in the future release._ 
 
+## Normal Modes: what is the expected outcome?  
+We show several modes that are computed from this work: [0S2](https://www.youtube.com/watch?v=DDfGHmqCMN0&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&index=5&t=0s), 
+[0T2](https://www.youtube.com/watch?v=hxeDz8ncNH4), 
+[3S9](https://www.youtube.com/watch?v=YR6N3AOTwoU&index=7&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s) and
+[1T11](https://www.youtube.com/watch?v=XWY_dNAYAjE&index=6&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s). 3S9 and 1T11 are illustrated below. 
+
+<img src="figs/PREM3S9.gif" width="425"/> <img src="figs/PREM1T11.gif" width="425"/> 
+
+
 ## Preparation
+You may use the repository [PlanetaryModels](https://github.com/js1019/PlanetaryModels) to create your planetar models. 
 
 ### How to intall it? 
 Prerequisite: MPI, ParMetis and pEVSL. Intel Math Kernal Library (MKL) is recommanded to use pEVSL. 
@@ -32,15 +42,6 @@ You may then go to src/ and type
 ~~~
 make clean; make; 
 ~~~
-
-## Normal Modes 
-We show several modes that are computed from this work: [0S2](https://www.youtube.com/watch?v=DDfGHmqCMN0&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&index=5&t=0s), 
-[0T2](https://www.youtube.com/watch?v=hxeDz8ncNH4), 
-[3S9](https://www.youtube.com/watch?v=YR6N3AOTwoU&index=7&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s) and
-[1T11](https://www.youtube.com/watch?v=XWY_dNAYAjE&index=6&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s). 
-
-
-<img src="figs/PREM3S9.gif" width="425"/> <img src="figs/PREM1T11.gif" width="425"/> 
 
 
 ## Reference
