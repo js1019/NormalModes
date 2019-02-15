@@ -4,7 +4,7 @@ The elastic gravitational system is discretized using the Continous Galerkin mix
 A Lanczos approach with polynomial filtering is utiilzed for solving 
 the resulting generalized eigenvalue problem. 
 
-Currently, this code has been tested using GNU, Intel and Cray compilers. 
+Currently, this code has been tested using GNU, Intel and Cray compilers and scaled up to 40k processes. 
 
 _Self-gravitation and rotation will be included in the future release._ 
 
@@ -45,7 +45,9 @@ make clean; make;
 ~~~
 
 ## How to run this application? 
-
+Please check the demos/global_conf, which shows an **extremely simple** parameter setting. 
+Since the problem is deterministic, there are only a few parameters that are needed to compute the normal modes. 
+Please check the README.md under demos/ for more details. 
 
 ## Reference
 The repository provides codes to compute planetary normal modes for [our SuperComputing (SC'18) paper](https://dl.acm.org/citation.cfm?id=3291751), see below. 
