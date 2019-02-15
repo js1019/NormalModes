@@ -1,24 +1,25 @@
 # Normal Modes at Planetary Scales
-This repository provides a highly parallel algorithm to compute the planetary normal modes. 
-The elastic gravitational system is discretized using the Continous Galerkin mixed finite element method. 
+This repository provides a highly parallel algorithm to compute the planetary interior normal modes. 
+The elastic-gravitational system is discretized using the Continous Galerkin mixed finite element method. 
 A Lanczos approach with polynomial filtering is utiilzed for solving 
-the resulting generalized eigenvalue problem. 
+the resulting generalized eigenvalue problems. 
 
-Currently, this code has been tested using GNU, Intel and Cray compilers and scaled up to 40k processes. 
+It runs on multi-CPU platforms. Currently, this code has been tested using GNU, Intel and Cray compilers and scaled up to 40k processes. 
 
 _Self-gravitation and rotation will be included in the future release._ 
 
-## Normal Modes: what is the expected outcome?  
+## Normal Modes: what will be the expected outcome?  
 We show several modes that are computed from this work: [0S2](https://www.youtube.com/watch?v=DDfGHmqCMN0&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&index=5&t=0s), 
 [0T2](https://www.youtube.com/watch?v=hxeDz8ncNH4), 
 [3S9](https://www.youtube.com/watch?v=YR6N3AOTwoU&index=7&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s) and
-[1T11](https://www.youtube.com/watch?v=XWY_dNAYAjE&index=6&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s). 3S9 and 1T11 are illustrated below. 
+[1T11](https://www.youtube.com/watch?v=XWY_dNAYAjE&index=6&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s). 3S9 and 1T11 are also illustrated below. 
 
 <img src="figs/PREM3S9.gif" width="425"/> <img src="figs/PREM1T11.gif" width="425"/> 
 
+Many different modes are expected. 
 
 ## Preparation
-**Input**: you may use the repository [PlanetaryModels](https://github.com/js1019/PlanetaryModels) to create your planetar models. 
+**Input**: you may use the repository [PlanetaryModels](https://github.com/js1019/PlanetaryModels) to create your planetary models. 
 
 ### How to intall it? 
 Prerequisite: MPI, ParMetis and pEVSL. Intel Math Kernal Library (MKL) is recommanded to use pEVSL. 
@@ -31,8 +32,8 @@ make config; make;
 
 **Parallel EigenValue Slicing** ([pEVSL](https://github.com/eigs/pEVSL)) 
 is used to solve the generalized eigenvalue problem. 
-You may use [this forked pEVSL version](https://github.com/js1019/pEVSL) 
-for planetary normal mode computation. 
+You may use [the forked pEVSL version](https://github.com/js1019/pEVSL) 
+for this application, since it contains several modifications for your convenience. 
 Please edit makefile.in for your cluster. 
 We recommand users to use MKL. 
 If you do not have MKL, we recommand users to use Openblas or Gotoblas. 
@@ -74,4 +75,4 @@ The repository provides codes to compute planetary normal modes for [our SuperCo
 Parallel strong and weak scalabilities are shown in this paper. 
 
 ## Contact 
-Please report issues under this repository. Please send your suggestions and comments to jia.shi@rice.edu. 
+Please report issues under this repository. Please send your suggestions and comments to jia.shi@rice.edu. Contributions are welcome. 
