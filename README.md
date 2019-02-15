@@ -56,8 +56,8 @@ Please check the README.md under demos/ for more details.
 
 **Tips**: please always check the performance and scalability before you run large-scale applications. 
 
-**Visualization**: you need to use scripts and [Paraview](https://www.paraview.org/)
-in [PlanetaryModels](https://github.com/js1019/PlanetaryModels) to visualize your results. 
+**Visualization**: you need to use scripts in [PlanetaryModels](https://github.com/js1019/PlanetaryModels) and [Paraview](https://www.paraview.org/)
+to visualize your results. 
 
 ## Reference
 The repository provides codes to compute planetary normal modes for [our SuperComputing (SC'18) paper](https://dl.acm.org/citation.cfm?id=3291751), see below. 
