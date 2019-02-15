@@ -29,8 +29,10 @@ change **IDXTYPEWIDTH** to **64**. You then do
 make config; make;
 ~~~
 
-**Parallel EigenValue Slicing** ([pEVSL](https://github.com/eigs/pEVSL)) is used to solve the generalized eigenvalue problem. 
-You may use this [forked pEVSL version](https://github.com/js1019/pEVSL) for planetary normal mode computation. 
+**Parallel EigenValue Slicing** ([pEVSL](https://github.com/eigs/pEVSL)) 
+is used to solve the generalized eigenvalue problem. 
+You may use [this forked pEVSL version](https://github.com/js1019/pEVSL) 
+for planetary normal mode computation. 
 Please edit makefile.in for your cluster. 
 We recommand users to use MKL. 
 If you do not have MKL, we recommand users to use Openblas or Gotoblas. 
@@ -48,7 +50,14 @@ make clean; make;
 Please check the demos/global_conf, which shows an **extremely simple** parameter setting. 
 Since the problem is deterministic, there are only a few parameters that are needed to compute the normal modes. 
 You will then be able to obtain _all_ the eigenpairs in the prescribed frequency inteval. 
+The values of eigenfrequencies will be shown at the end of the computation. 
+The eigenfunctions will be save in binary format. 
 Please check the README.md under demos/ for more details. 
+
+**Tips**: please always check the performance and scalability before you run large-scale applications. 
+
+**Visualization**: you need to use scripts and [Paraview](https://www.paraview.org/)
+in [PlanetaryModels](https://github.com/js1019/PlanetaryModels) to visualize your results. 
 
 ## Reference
 The repository provides codes to compute planetary normal modes for [our SuperComputing (SC'18) paper](https://dl.acm.org/citation.cfm?id=3291751), see below. 
