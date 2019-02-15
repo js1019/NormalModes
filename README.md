@@ -7,7 +7,9 @@ the resulting generalized eigenvalue problem.
 
 _Self-gravitation and rotation will be included in the future release._ 
 
-## How to intall it? 
+## Preparation
+
+### How to intall it? 
 Prerequisite: MPI, ParMetis and pEVSL. Intel Math Kernal Library (MKL) is recommanded to use pEVSL. 
 
 **Parallel Graph Partitioning** ([ParMetis](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download)) is used for domain decomposition. To install ParMetis, you need have CMake installed and need to edit metis/includemetis.h 
@@ -37,10 +39,12 @@ We show several modes that are computed from this work: [0S2](https://www.youtub
 [3S9](https://www.youtube.com/watch?v=YR6N3AOTwoU&index=7&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s) and
 [1T11](https://www.youtube.com/watch?v=XWY_dNAYAjE&index=6&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s). 
 
+Here is the 3S9 mode: 
+<img src="figs/PREM3S9.gif">
 
 
 ## Reference
-The repository provides scripts to generate planetary models for [the SuperComputing (SC'18) paper](https://dl.acm.org/citation.cfm?id=3291751), see below for details. 
+The repository provides codes to compute planetary normal modes for [our SuperComputing (SC'18) paper](https://dl.acm.org/citation.cfm?id=3291751), see below for details. 
 
 ~~~
 @inproceedings{shi2018computing,
