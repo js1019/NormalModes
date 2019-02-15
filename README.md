@@ -22,14 +22,14 @@ We show several modes that are computed from this work: [0S2](https://www.youtub
 ### How to intall it? 
 Prerequisite: MPI, ParMetis and pEVSL. Intel Math Kernal Library (MKL) is recommanded to use pEVSL. 
 
-**Parallel Graph Partitioning** ([ParMetis](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download)) is used for domain decomposition. To install ParMetis, you need have CMake installed and need to edit metis/includemetis.h 
+**Parallel Graph Partitioning** ([ParMetis](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download)) is used for domain decomposition. To install ParMetis, you need have CMake installed and need to edit metis/includemetis.h and 
 change **IDXTYPEWIDTH** to **64**. You then do 
 ~~~
 make config; make;
 ~~~
 
-**Parallel EigenValue Slicing** ([pEVSL](https://github.com/js1019/pEVSL)) is used to solve the generalized eigenvalue problem. 
-You may use this  version for planetary normal mode computation. 
+**Parallel EigenValue Slicing** ([pEVSL](https://github.com/eigs/pEVSL)) is used to solve the generalized eigenvalue problem. 
+You may use this [forked pEVSL version](https://github.com/js1019/pEVSL) for planetary normal mode computation. 
 Please edit makefile.in for your cluster. 
 We recommand users to use MKL. 
 If you do not have MKL, we recommand users to use Openblas or Gotoblas. 
