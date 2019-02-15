@@ -1,0 +1,13 @@
+  Start program at time elapsed = 0.0 second.
+   1. Starting main program
+   2. Building geometry
+   3. ..Building reference tetrahedra
+  Time elapsed =   3.200000012293458E-002 seconds.
+   4. ..Building local Jacobians
+   5. ..Building local normal vectors
+  Time elapsed =   4.300000006332994E-002 seconds.
+   6. Loading models
+  Time elapsed =   5.000000004656613E-002 seconds.
+   7. Creating matrix
+   8. the matrix (f-s) structure is done
+  Time elapsed =   0.137000000104308      seconds.
