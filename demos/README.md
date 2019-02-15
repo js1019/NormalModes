@@ -22,5 +22,5 @@ pOrder = order of finite-element polynomial basis; you may choose 1 or 2.
 For general applications, we note that you need to generate a corresponding model with the same _pOrder_ 
 and reference gravity (if needed), which needs to be precomputed use [PlanetaryModels](https://github.com/js1019/PlanetaryModels). 
 You will then obtain all the eigenpairs in [lowfreq, upfreq]. 
-Note that the actual bounds are (lowfreq*2*&pi)^2 to (upfreq*2*&pi)^2. 
+Note that the actual bounds are (lowfreq* 2 *\pi)^2 to (upfreq* 2 *\pi)^2. 
 
