@@ -47,6 +47,7 @@ make clean; make;
 ## How to run this application? 
 Please check the demos/global_conf, which shows an **extremely simple** parameter setting. 
 Since the problem is deterministic, there are only a few parameters that are needed to compute the normal modes. 
+You will then be able to obtain _all_ the eigenpairs in the prescribed frequency inteval. 
 Please check the README.md under demos/ for more details. 
 
 ## Reference
