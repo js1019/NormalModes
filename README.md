@@ -4,7 +4,6 @@ The elastic-gravitational system is discretized using the Continous Galerkin mix
 A Lanczos approach with polynomial filtering is utiilzed for solving 
 the resulting generalized eigenvalue problems. 
 
-It runs on multi-CPU platforms. Currently, this code has been tested using GNU, Intel and Cray compilers and scaled up to 40k processes. 
 
 _Self-gravitation and rotation will be included in the future release._ 
 
@@ -21,43 +20,51 @@ Many different modes are expected.
 ## Preparation
 **Input**: you may use the repository [PlanetaryModels](https://github.com/js1019/PlanetaryModels) to create your planetary models. 
 
-### How to intall it? 
+### How to install it? 
 Prerequisite: MPI, ParMetis and pEVSL. Intel Math Kernal Library (MKL) is recommanded to use pEVSL. 
 
-**Parallel Graph Partitioning** ([ParMetis](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download)) is used for domain decomposition. To install ParMetis, you need have CMake installed and need to edit metis/includemetis.h and 
+It runs on multi-CPU platforms. Currently, this code has been tested using GNU, Intel and Cray compilers and scaled up to **40k** processes. 
+
+**Parallel Graph Partitioning** ([ParMetis](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download)) is used for domain decomposition. To install ParMetis, you need have CMake and need to edit metis/includemetis.h and 
 change **IDXTYPEWIDTH** to **64**. You then do 
 ~~~
 make config; make;
 ~~~
+CMake is commonly installed in modern clusters. The installation of ParMetis will be easy and simple. 
 
 **Parallel EigenValue Slicing** ([pEVSL](https://github.com/eigs/pEVSL)) 
 is used to solve the generalized eigenvalue problem. 
 You may use [the forked pEVSL version](https://github.com/js1019/pEVSL) 
 for this application, since it contains several modifications for your convenience. 
 Please edit makefile.in for your cluster. 
-We recommand users to use MKL. 
+We recommand users to use MKL and [Intel link line advisor](https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor) 
+to find the right links for you. 
 If you do not have MKL, we recommand users to use Openblas or Gotoblas. 
 
+The installation of pEVSL will be easy and simple. Please check the example to make sure that it is installed correctly. 
 
-**This software**: once ParMetis and pEVSL are installed, you may install this software. 
+
+**This software**: once ParMetis and pEVSL are installed, you can install this software. 
 Please edit makefile.in for right paths. 
 We have two makefile.in examples for GNU and Intel compiler users. 
 You may then go to src/ and type 
 ~~~
 make clean; make; 
 ~~~
+The installation will also be easy and simple. 
+
 
 ## How to run this application? 
 Please check the demos/global_conf, which shows an **extremely simple** parameter setting. 
 Since the problem is deterministic, there are only a few parameters that are needed to compute the normal modes. 
 You will then be able to obtain _all_ the eigenpairs in the prescribed frequency inteval. 
 The values of eigenfrequencies will be shown at the end of the computation. 
-The eigenfunctions will be save in binary format. 
+The eigenfunctions will be saved in binary format. 
 Please check the README.md under demos/ for more details. 
 
 **Tips**: please always check the performance and scalability before you run large-scale applications. 
 
-**Visualization**: you need to use scripts in [PlanetaryModels](https://github.com/js1019/PlanetaryModels) and [Paraview](https://www.paraview.org/)
+**Visualization**: you will need to use scripts in [PlanetaryModels](https://github.com/js1019/PlanetaryModels) and [Paraview](https://www.paraview.org/)
 to visualize your results. 
 
 ## Reference
