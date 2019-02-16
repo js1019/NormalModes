@@ -7,7 +7,8 @@ You can set up the number of MPI processes and threads, etc.
 It provides two test examples. 
 One is a constant solid elastic ball in models/input/CONST3k/. 
 Another one is a small PREM in models/input/PREM3k/. 
-You can directly use the current global_conf to run your first test!
+You can directly use the current global_conf to run your first test! 
+You can run JOB = 1 or 2 and pOrder = 1 or 2 with various lowfreq and upfreq. 
 
 In general, you will need to set up a few things:
 ~~~ 
@@ -22,7 +23,10 @@ pOrder = order of finite-element polynomial basis; you may choose 1 or 2.
 ~~~
 
 For general applications, we note that you need to generate a corresponding model with the same _pOrder_ 
-and reference gravity (if needed), which needs to be precomputed use [PlanetaryModels](https://github.com/js1019/PlanetaryModels). 
+and reference gravity (if needed), which needs to be precomputed using [PlanetaryModels](https://github.com/js1019/PlanetaryModels). 
 You will then obtain all the eigenpairs in [lowfreq, upfreq]. 
 Note that the actual bounds are (2*pi[lowfreq, upfreq])^2. 
+Please make sure that lowfreq (smallest is 0.0) and upfreq 
+are within the eigenvalue bounds of the problem. 
+
 
