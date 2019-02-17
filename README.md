@@ -25,12 +25,12 @@ Prerequisite: MPI, ParMetis and pEVSL. Intel Math Kernal Library (MKL) is recomm
 
 It runs on multi-CPU platforms. Currently, this code has been tested using GNU, Intel and Cray compilers and scaled up to **40k** processes. 
 
-**Parallel Graph Partitioning** ([ParMetis](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download)) is used for domain decomposition. To install ParMetis, you need have CMake and need to edit metis/includemetis.h and 
-change **IDXTYPEWIDTH** to **64**. You then do 
+**Parallel Graph Partitioning** ([ParMetis](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download)) is used for domain decomposition. To install ParMetis, CMake is needed and please edit metis/includemetis.h and 
+change **IDXTYPEWIDTH** to **64**. You can then do 
 ~~~
 make config; make;
 ~~~
-CMake is commonly installed in modern clusters. The installation of ParMetis will be easy and simple. 
+Since CMake is commonly installed in modern clusters, the installation of ParMetis will be easy and simple. 
 
 **Parallel EigenValue Slicing** ([pEVSL](https://github.com/eigs/pEVSL)) 
 is used to solve the generalized eigenvalue problem. 
@@ -57,9 +57,9 @@ The installation will also be easy and simple.
 ## How to run this application? 
 Please check the demos/global_conf, which shows an **extremely simple** parameter setting. 
 Since the problem is deterministic, there are only a few parameters that are needed to compute the normal modes. 
-You will then be able to obtain _all_ the eigenpairs in the prescribed frequency inteval. 
-The values of eigenfrequencies will be shown at the end of the computation. 
-The eigenfunctions will be saved in binary format. 
+You will then be able to obtain _all_ the eigenpairs in the prescribed frequency interval. 
+The values of eigenfrequencies will be shown at the end of the computation as well as their relative errors, i.e., ||Ax-&lambda; Bx||/||&lambda;||. 
+The eigenfunctions will be saved in the binary format. 
 Please check the README.md under demos/ for more details. 
 
 **Tips**: please always check the performance and scalability before you run large-scale applications. 
