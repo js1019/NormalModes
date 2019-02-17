@@ -58,7 +58,7 @@ The installation will also be easy and simple.
 Please check the demos/global_conf, which shows an **extremely simple** parameter setting. 
 Since the problem is deterministic, there are only a few parameters that are needed to compute the normal modes. 
 You will then be able to obtain _all_ the eigenpairs in the prescribed frequency interval. 
-The values of eigenfrequencies will be shown at the end of the computation as well as their relative errors, i.e., ||Ax-&lambda; Bx||/||&lambda;||. 
+The values of eigenfrequencies will be shown at the end of the computation as well as their relative errors, i.e., ||Ax-&lambda;Bx||/||&lambda;||. 
 The eigenfunctions will be saved in the binary format. 
 Please check the README.md under demos/ for more details. 
 
