@@ -196,7 +196,7 @@ module pevsl_mod
            fname  = trim(fname) 
            offset = mymatvec%B%sizdist(mymatvec%rank+1)*leight 
            bfsiz  = mymatvec%pbsiz 
-           vdat   = EIGVEC((j-1)*bfsiz+1:j*bfsiz) 
+           vdat   = EIGVEC((j-1)*bfsiz+1:j*bfsiz)*mymatvec%B%diag 
            call pnm_save_dreal(bfsiz,vdat,offset,fname)
         enddo 
 
