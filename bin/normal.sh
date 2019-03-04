@@ -19,7 +19,7 @@ export OMP_NUM_THREADS=2
 export MV2_ENABLE_AFFINITY=0
 
 cd /work/04149/tg834482/stampede2/NormalModes/IOnew/PNMsG_0.0
-source setEnv
+source SetEnv
 cd trGbinE0
 ibrun ./plmvcg_Stampede2_itl18.out
 

@@ -182,21 +182,21 @@ module parmetis_interface
    end function ParMETIS_V3_PartKway
  end interface
 
- interface
-   integer(C_int64_t) function ParMETIS_V3now_PartKway(vtxdist,xadj,adjncy,&
-                  vwgt,adjwgt,wgtflag,numflag,ncon,nparts,tpwgts,ubvec,&
-             opts,edgecut,part,comm) bind(C,name="ParMETIS_V3_PartKway")
-   use, intrinsic                            :: ISO_C_BINDING
-   implicit none 
-   integer(C_int64_t)                        :: wgtflag,numflag,ncon,comm,&
-                                                nparts,edgecut
-   integer(C_int64_t), dimension(*)          :: vtxdist,xadj,adjncy
-   type(C_PTR), value                        :: vwgt,adjwgt
-   real(C_FLOAT), dimension(*)               :: tpwgts,ubvec!,elmwgt
-   integer(C_int64_t)                        :: opts(0:2)
-   !type(C_PTR), intent(out)                  :: part
-   integer(C_int64_t), dimension(*)          :: part
-   end function ParMETIS_V3now_PartKway
- end interface
+ !interface
+ !  integer(C_int64_t) function ParMETIS_V3now_PartKway(vtxdist,xadj,adjncy,&
+ !                 vwgt,adjwgt,wgtflag,numflag,ncon,nparts,tpwgts,ubvec,&
+ !            opts,edgecut,part,comm) bind(C,name="ParMETIS_V3_PartKway")
+ !  use, intrinsic                            :: ISO_C_BINDING
+ !  implicit none 
+ !  integer(C_int64_t)                        :: wgtflag,numflag,ncon,comm,&
+ !                                               nparts,edgecut
+ !  integer(C_int64_t), dimension(*)          :: vtxdist,xadj,adjncy
+ !  type(C_PTR), value                        :: vwgt,adjwgt
+ !  real(C_FLOAT), dimension(*)               :: tpwgts,ubvec!,elmwgt
+ !  integer(C_int64_t)                        :: opts(0:2)
+ !  !type(C_PTR), intent(out)                  :: part
+ !  integer(C_int64_t), dimension(*)          :: part
+ !  end function ParMETIS_V3now_PartKway
+ !end interface
 
 end module parmetis_interface

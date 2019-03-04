@@ -316,7 +316,19 @@ module cg_models_mod
       real*8, allocatable                     :: buf(:),bufn(:,:)
 
       real*8, allocatable, dimension(:)       :: rdt0,rdt1
-    
+   
+      logical                                 :: alive
+   
+      ! check 
+      if (unstrM%rank == 0) then
+         inquire(file=trim(fname),exist=alive)
+         if (.not.alive) then
+            print*,'Error: File "',trim(fname),'" does not exist.'
+            stop
+         endif
+      endif 
+
+
       leight = 8; lfour = 4
 
       call mpi_file_open(unstrM%comm,fname,mpi_mode_rdonly,&

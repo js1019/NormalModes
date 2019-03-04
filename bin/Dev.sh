@@ -18,7 +18,7 @@ export OMP_NUM_THREADS=2
 export MV2_ENABLE_AFFINITY=0
 
 cd /work/04149/tg834482/stampede2/release0/NormalModes/
-source setEnv
+source SetEnv
 cd bin
 #ibrun valgrind --error-limit=no ./plmvcg_stampede2.out 
 ibrun ./plmvcg_stampede2.out 

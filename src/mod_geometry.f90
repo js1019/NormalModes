@@ -76,7 +76,7 @@ module geometry_mod
        call pnm_loc_data_build()
     elseif (pin%s%pOrder.eq.2) then
        call pnm_add_edges()
-       if (unstrM%rank.eq.0) print*,"check 0"
+       !if (unstrM%rank.eq.0) print*,"check 0"
        call pnm_p2_parmetis()
        call report_time(pin%comm)
        call pnm_p2_data_build()
@@ -355,7 +355,6 @@ module geometry_mod
     ! change data
     call pnm_data_exchange(lsiz,lsiz,pidv,v2vd,v2vh,l1,vtp,v2v0,unstrM%comm)
     deallocate(vtp) 
-
     call pnm_data_exchange(lsiz,lsiz,pidv,v2vd,v2vl,l1,vtp,v2v1,unstrM%comm)
     deallocate(vtp)
     
@@ -407,6 +406,8 @@ module geometry_mod
        unstrM%org%v2v(ll-kk+1:ll) = idat1
        deallocate(idat0,idt0,idat1)       
     enddo
+
+    !print*, "check", unstrM%rank
 
   end subroutine pnm_read_ele 
 
@@ -699,6 +700,8 @@ module geometry_mod
              myvwgt(i*3+1) = unstrM%org%vstat(i+1)
              myvwgt(i*3+2) = unstrM%org%nv(i+1)
           enddo
+          !print*, "check", unstrM%rank
+
 
           allocate(adjncy(0:unstrM%org%v2vsiz-1))
           do i = 0,unstrM%org%v2vsiz-1 
@@ -752,6 +755,7 @@ module geometry_mod
           allocate(part(0:unstrM%org%nvtx-1)); part=-1
  
           allocate(unstrM%org%part(unstrM%org%nvtx))
+          print*, 'check', unstrM%rank
           parmetis_call_status = ParMETIS_V3_PartKway(vtxdist,&
             v2vdist,adjncy,myvwgt,adjwgt,wgtflag,numflag,ncon,&
           nparts,tpwgts,ubvec,options,edgecut,part,comm)  
@@ -846,12 +850,12 @@ module geometry_mod
           if (unstrM%rank.eq.unstrM%nproc-1) print*, 'partition f-s'
        else
           allocate(adjncy(unstrM%orgn%v2vsiz)); adjncy = unstrM%orgn%v2v - 1
-          adjwgt = c_null_ptr
-          !allocate(myvwgt(0:unstrM%orgn%nvtx-1)); myvwgt = 1
+          !adjwgt = c_null_ptr
+          allocate(myvwgt(0:unstrM%orgn%nvtx-1)); myvwgt = 1
           vwgt = c_null_ptr
 
-          !wgtflag = 2; numflag = 0; ncon = 1; nparts = unstrM%nproc 
-          wgtflag = 0; numflag = 0; ncon = 1; nparts = unstrM%nproc 
+          wgtflag = 2; numflag = 0; ncon = 1; nparts = unstrM%nproc 
+          !wgtflag = 0; numflag = 0; ncon = 1; nparts = unstrM%nproc 
           allocate(tpwgts(ncon*nparts),ubvec(ncon))
           tpwgts = 1.0D0/real(nparts,8); ubvec = 1.05D0; options = 0
           options(0) = 1; options(1) = 1
@@ -866,12 +870,12 @@ module geometry_mod
           allocate(unstrM%orgn%part(unstrM%orgn%nvtx))
           allocate(part(0:unstrM%orgn%nvtx-1)); part=-1
 
-          !parmetis_call_status = ParMETIS_V3_PartKway(vtxdist,&
-          !  v2vdist,adjncy,myvwgt,adjwgt,wgtflag,numflag,ncon,&
+          parmetis_call_status = ParMETIS_V3_PartKway(vtxdist,&
+            v2vdist,adjncy,myvwgt,adjwgt,wgtflag,numflag,ncon,&
+            nparts,tpwgts,ubvec,options,edgecut,part,comm) 
+          !parmetis_call_status = ParMETIS_V3now_PartKway(vtxdist,&
+          !  v2vdist,adjncy,vwgt,adjwgt,wgtflag,numflag,ncon,&
           !nparts,tpwgts,ubvec,options,edgecut,part,comm) 
-          parmetis_call_status = ParMETIS_V3now_PartKway(vtxdist,&
-            v2vdist,adjncy,vwgt,adjwgt,wgtflag,numflag,ncon,&
-          nparts,tpwgts,ubvec,options,edgecut,part,comm) 
  
           do i = 1,unstrM%orgn%nvtx
              unstrM%orgn%part(i) = part(i-1)
