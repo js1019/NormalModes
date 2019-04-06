@@ -25,7 +25,7 @@ Prerequisite: MPI, ParMetis and pEVSL. Intel Math Kernal Library (MKL) is recomm
 
 It runs on multi-CPU platforms. Currently, this code has been tested using GNU, Intel and Cray compilers and scaled up to **40k** processes. 
 
-**Parallel Graph Partitioning** ([ParMetis](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download)) is used for domain decomposition. To install ParMetis, CMake is needed and please edit metis/includemetis.h and 
+**Parallel Graph Partitioning** ([ParMetis](http://glaros.dtc.umn.edu/gkhome/metis/parmetis/download)) is used for domain decomposition. To install ParMetis, CMake is needed and please edit metis/include/metis.h and 
 change **IDXTYPEWIDTH** to **64**. You can then do 
 ~~~
 make config; make;
@@ -44,7 +44,7 @@ If you do not have MKL, we recommand users to use Openblas or Gotoblas.
 The installation of pEVSL will be easy and simple. Please check the example to make sure that it is installed correctly. 
 
 
-**This software**: once ParMetis and pEVSL are installed, you can install this software. 
+**This work**: once ParMetis and pEVSL are installed, you can install this software. 
 Please edit makefile.in for right paths. 
 We have two makefile.in examples for GNU and Intel compiler users. 
 You may then go to src/ and type 
