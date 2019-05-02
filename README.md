@@ -18,7 +18,7 @@ We show several modes that are computed from this work: [0S2](https://www.youtub
 Many different modes are expected. 
 
 ## Preparation
-**Input**: you may use the repository [PlanetaryModels](https://github.com/js1019/PlanetaryModels) to create your planetary models. 
+**Input**: you may use the repository [PlanetaryModels](https://github.com/js1019/PlanetaryModels) to create your input planetary models. 
 
 ### How to install it? 
 Prerequisite: MPI, ParMetis and pEVSL. Intel Math Kernal Library (MKL) is recommanded to use pEVSL. 
