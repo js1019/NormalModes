@@ -1,0 +1,21 @@
+  Start program at time elapsed = 0.0 second.
+   1. Starting main program
+   2. Building geometry
+   3. ..Building reference tetrahedra
+  Time elapsed =   0.416000000084750      seconds.
+   4. ..Building local Jacobians
+   5. ..Building local normal vectors
+  Time elapsed =   0.455000000074506      seconds.
+   6. Loading models
+  Time elapsed =   0.499000000068918      seconds.
+   7. Creating matrix
+   8. the matrix (f-s) structure is done
+  Time elapsed =   0.570000000065193      seconds.
+  Time elapsed =    4.00700000009965      seconds.
+  Time elapsed =    78.1010000000242      seconds.
+   9. save eigenvectors
+  Time elapsed =    283.168000000063      seconds.
+  10. solve the eigenvalue problem
+  Time elapsed =    283.226000000024      seconds.
+  11. finalize everything
+  Time elapsed =    283.226000000024      seconds.

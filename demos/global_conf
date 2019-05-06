@@ -4,16 +4,22 @@
 JOB         = 1
 basename    = CONST_1L_3k.1
 #basename    = prem_3L_3k.1
-#Pudue server
+#basename    = Mtopo_6L_100k.1
+#basename    = Mtopo_6L_100k.1
+#basename    = RTMDWAK_3L_8k.1
+
 inputdir   = models/input/CONST3k/
 outputdir  = models/output/CONST3k/ 
 #inputdir   = models/input/PREM3k/
 #outputdir  = models/output/PREM3k/ 
+#inputdir   = models/input/Mtopo100k/
+#outputdir  = models/output/Mtopo100k/ 
+#inputdir   = models/input/RTMDWAK8k/
+#outputdir  = models/output/RTMDWAK8k/ 
  
-CGMethod = .TRUE.
 
-lowfreq      = 0.1 # mHz 
-upfreq       = 1.0 # mHz
+lowfreq      = 0.2 # mHz 
+upfreq       = 2.0 # mHz
 pOrder       = 1   # order of polynomial basis (1 or 2)
 
 

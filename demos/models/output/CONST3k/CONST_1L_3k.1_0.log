@@ -2,13 +2,21 @@
    1. Starting main program
    2. Building geometry
    3. ..Building reference tetrahedra
-  Time elapsed =   3.000000002793968E-002 seconds.
+  Time elapsed =   0.312999999849126      seconds.
    4. ..Building local Jacobians
    5. ..Building local normal vectors
-  Time elapsed =   4.100000020116568E-002 seconds.
+  Time elapsed =   0.339999999850988      seconds.
    6. Loading models
-  Time elapsed =   5.100000021047890E-002 seconds.
+  Time elapsed =   0.378999999957159      seconds.
    7. Creating matrix
    8. the matrix structure is done
-  Time elapsed =   5.600000009872019E-002 seconds.
-  Time elapsed =   0.100000000093132      seconds.
+  Time elapsed =   0.379999999888241      seconds.
+  Time elapsed =   0.381999999983236      seconds.
+  Time elapsed =    1.07099999999627      seconds.
+  Time elapsed =    7.96900000004098      seconds.
+   9. save eigenvectors
+  Time elapsed =    14.9959999998100      seconds.
+  10. solve the eigenvalue problem
+  Time elapsed =    15.0389999998733      seconds.
+  11. finalize everything
+  Time elapsed =    15.0389999998733      seconds.
