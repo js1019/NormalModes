@@ -45,7 +45,7 @@ make config; make;
 ~~~
 Since CMake is commonly installed in modern clusters, the installation of ParMetis will be easy and simple. 
 
-**Parallel EigenValue SLicing** ([pEVSL](https://github.com/eigs/pEVSL)) 
+**Parallel EigenValue Slicing Library** ([pEVSL](https://github.com/eigs/pEVSL)) 
 is used to solve the generalized eigenvalue problem. 
 You may use [the forked pEVSL version](https://github.com/js1019/pEVSL) 
 for this application, since it contains several modifications for your convenience. 
