@@ -178,8 +178,8 @@ module cg_create_matrix_mod
 
        lam   = C33(rows1) 
        mu    = C44(rows1) 
-       rhot  = sum(models%coeff_loc(rows1,models%p_rho))/real(pin%s%pNp,8) 
-       !rhot  = models%coeff_loc(rows1,models%p_rho) 
+       !rhot  = sum(models%coeff_loc(rows1,models%p_rho))/real(pin%s%pNp,8) 
+       rhot  = models%coeff_loc(rows1,models%p_rho) 
 
        rhoavg = sum(rhot)/real(pin%s%pNp,8)
        lamavg = sum(lam)/real(pin%s%pNp,8)
