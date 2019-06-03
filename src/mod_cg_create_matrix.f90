@@ -173,8 +173,8 @@ module cg_create_matrix_mod
        enddo
       
        ! take the avarage 
-       C33(rows1) = sum(C33(rows1))/real(pin%s%pNp,8)     
-       C44(rows1) = sum(C44(rows1))/real(pin%s%pNp,8)     
+       !C33(rows1) = sum(C33(rows1))/real(pin%s%pNp,8)     
+       !C44(rows1) = sum(C44(rows1))/real(pin%s%pNp,8)     
 
        lam   = C33(rows1) 
        mu    = C44(rows1) 
@@ -235,8 +235,8 @@ module cg_create_matrix_mod
              normalg(:,i) = gk1(:,i)/normg
              call diagmatrix(diagnormalg(:,:,i),normalg(:,i),pin%s%pNp)
           enddo
-          !N2k1 = N2k1/rhot - normg**2/lam*rhot
-          N2k1 = N2k1/rhot - normg**2/lamavg*rhoavg
+          N2k1 = N2k1/rhot - normg**2/lam*rhot
+          !N2k1 = N2k1/rhot - normg**2/lamavg*rhoavg
 
           N2avg = sum(N2k1)/real(pin%s%pNp,8)    
  
