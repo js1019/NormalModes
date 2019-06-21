@@ -14,7 +14,9 @@ We show several modes that are computed from this work: [0S2](https://www.youtub
 
 <img src="figs/PREM3S9.gif" width="425"/> <img src="figs/PREM1T11.gif" width="425"/> 
 
-Many different modes are expected. 
+Many different modes are expected. Please see more modes computed from a standard spherically symmetric Earth model below
+
+<img src="figs/PREM2M_J2_0S2.png" width="212"/> <img src="figs/PREM2M_J2_0S3.png" width="212"/> <img src="figs/PREM2M_J2_0S5.png" width="212"/> <img src="figs/PREM2M_J2_0S7.png" width="212"/> 
 
 ## A note on our design of the application 
 It is not straightforward to compute the normal modes of a fully heterogeneous planet. 
