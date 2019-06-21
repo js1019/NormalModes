@@ -7,7 +7,7 @@ the resulting generalized eigenvalue problems.
 _Self-gravitation and rotation will be included in the future release._ 
 
 ## Normal Modes: the expected outcome  
-Many different modes are expected. Please see below for more modes computed from a standard spherically symmetric Earth model.
+Many different modes are expected. Please see below for selected normal modes computed from a standard spherically symmetric Earth model.
 
 <img src="figs/PREM2M_J2_0S2.png" width="212"/> <img src="figs/PREM2M_J2_0S3.png" width="212"/> <img src="figs/PREM2M_J2_0S5.png" width="212"/> <img src="figs/PREM2M_J2_0S7.png" width="212"/> 
 <img src="figs/PREM2M_J2_1S3.png" width="212"/> <img src="figs/PREM2M_J2_1S4.png" width="212"/> <img src="figs/PREM2M_J2_1S6.png" width="212"/> <img src="figs/PREM2M_J2_1S9.png" width="212"/> 
@@ -76,7 +76,7 @@ The eigenfunctions will be saved in the binary format. Please check the README.m
 
 **Visualization**: You will need to use scripts in [PlanetaryModels](https://github.com/js1019/PlanetaryModels) and [Paraview](https://www.paraview.org/) to visualize your results. 
 
-We show animations of several modes that are computed from this work: [0S2](https://www.youtube.com/watch?v=DDfGHmqCMN0&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&index=5&t=0s), 
+We show animations of several modes computed from this work: [0S2](https://www.youtube.com/watch?v=DDfGHmqCMN0&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&index=5&t=0s), 
 [0T2](https://www.youtube.com/watch?v=hxeDz8ncNH4), 
 [3S9](https://www.youtube.com/watch?v=YR6N3AOTwoU&index=7&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s) and
 [1T11](https://www.youtube.com/watch?v=XWY_dNAYAjE&index=6&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s). 3S9 and 1T11 are also illustrated below. 
