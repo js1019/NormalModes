@@ -14,9 +14,7 @@ We show several modes that are computed from this work: [0S2](https://www.youtub
 
 <img src="figs/PREM3S9.gif" width="425"/> <img src="figs/PREM1T11.gif" width="425"/> 
 
-Many different modes are expected. Please see more modes computed from a standard spherically symmetric Earth model below
 
-<img src="figs/PREM2M_J2_0S2.png" width="212"/> <img src="figs/PREM2M_J2_0S3.png" width="212"/> <img src="figs/PREM2M_J2_0S5.png" width="212"/> <img src="figs/PREM2M_J2_0S7.png" width="212"/> 
 
 ## A note on our design of the application 
 It is not straightforward to compute the normal modes of a fully heterogeneous planet. 
@@ -78,6 +76,17 @@ The eigenfunctions will be saved in the binary format. Please check the README.m
 **Tips**: Please always check the performance and scalability before you run large-scale applications. 
 
 **Visualization**: You will need to use scripts in [PlanetaryModels](https://github.com/js1019/PlanetaryModels) and [Paraview](https://www.paraview.org/) to visualize your results. 
+
+### Illustration of More modes 
+
+Many different modes are expected. Please see below for more modes computed from a standard spherically symmetric Earth model.
+
+<img src="figs/PREM2M_J2_0S2.png" width="212"/> <img src="figs/PREM2M_J2_0S3.png" width="212"/> <img src="figs/PREM2M_J2_0S5.png" width="212"/> <img src="figs/PREM2M_J2_0S7.png" width="212"/> 
+<img src="figs/PREM2M_J2_1S3.png" width="212"/> <img src="figs/PREM2M_J2_1S4.png" width="212"/> <img src="figs/PREM2M_J2_1S6.png" width="212"/> <img src="figs/PREM2M_J2_1S9.png" width="212"/> 
+<img src="figs/PREM2M_J2_2S3.png" width="212"/> <img src="figs/PREM2M_J2_3S3.png" width="212"/> <img src="figs/PREM2M_J2_4S3.png" width="212"/> <img src="figs/PREM2M_J2_5S3.png" width="212"/> 
+<img src="figs/PREM2M_J2_0T2.png" width="212"/> <img src="figs/PREM2M_J2_1T1.png" width="212"/> <img src="figs/PREM2M_J2_1T2.png" width="212"/> <img src="figs/PREM2M_J2_2T4.png" width="212"/> 
+
+
 
 ## Reference
 The repository and pEVSL contain codes to compute planetary normal modes for [our SuperComputing (SC'18) paper](https://dl.acm.org/citation.cfm?id=3291751), see below. 
