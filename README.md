@@ -74,15 +74,14 @@ The eigenfunctions will be saved in the binary format. Please check the README.m
 
 **Tips**: Please always check the performance and scalability before you run large-scale applications. 
 
-**Visualization**: You will need to use scripts in [PlanetaryModels](https://github.com/js1019/PlanetaryModels) and [Paraview](https://www.paraview.org/) to visualize your results. 
-
-We show animations of several modes computed from this work: [0S2](https://www.youtube.com/watch?v=DDfGHmqCMN0&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&index=5&t=0s), 
+**Visualization**: You will need to use scripts in [PlanetaryModels](https://github.com/js1019/PlanetaryModels) and [Paraview](https://www.paraview.org/) to visualize your results. Here, we show animations created by Paraview: [0S2](https://www.youtube.com/watch?v=DDfGHmqCMN0&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&index=5&t=0s), 
 [0T2](https://www.youtube.com/watch?v=hxeDz8ncNH4), 
 [3S9](https://www.youtube.com/watch?v=YR6N3AOTwoU&index=7&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s) and
-[1T11](https://www.youtube.com/watch?v=XWY_dNAYAjE&index=6&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s). 3S9 and 1T11 are also illustrated below. 
+[1T11](https://www.youtube.com/watch?v=XWY_dNAYAjE&index=6&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s). 3S9 and 1T11 are illustrated below. 
 
-<img src="figs/PREM3S9.gif" width="425"/> <img src="figs/PREM1T11.gif" width="425"/> 
-
+<p align="center">
+<img src="figs/PREM3S9.gif" width="375"/> <img src="figs/PREM1T11.gif" width="375"/> 
+</p>
 
 ## Reference
 The repository and pEVSL contain codes to compute planetary normal modes for [our SuperComputing (SC'18) paper](https://dl.acm.org/citation.cfm?id=3291751), see below. 
