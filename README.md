@@ -1,4 +1,7 @@
 # Normal Modes at Planetary Scales
+<img src="https://img.shields.io/github/issues/js1019/NormalModes.svg"> <img src="https://img.shields.io/github/forks/js1019/NormalModes.svg"> <img src="https://img.shields.io/github/stars/js1019/NormalModes.svg"> <img src="https://img.shields.io/github/license/js1019/NormalModes.svg">
+
+
 This repository applied a combination of several highly parallel algorithms to compute the planetary interior normal modes. 
 The elastic-gravitational system is discretized using the Continuous Galerkin mixed finite element method. 
 A Lanczos approach with polynomial filtering is utilized for solving 
