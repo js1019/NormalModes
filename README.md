@@ -99,7 +99,7 @@ The repository and pEVSL contain codes to compute planetary normal modes for [ou
 }
 ~~~
 
-The theory, discretization, and validation of our work are described in [a separate paper](https://arxiv.org/abs/1906.11082) on arXiv. 
+The theory, discretization and validation of our work are described in [a separate paper](https://arxiv.org/abs/1906.11082) on arXiv. 
 ~~~
 @article{shi2019normalmodes
   title{A Rayleigh-Ritz method based approach to computing seismic normal modes in the presence of an essential spectrum},
