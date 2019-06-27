@@ -83,11 +83,11 @@ The eigenfunctions will be saved in the binary format. Please check the README.m
 [1T11](https://www.youtube.com/watch?v=XWY_dNAYAjE&index=6&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&t=0s). 3S9 and 1T11 are illustrated below. 
 
 <p align="center">
-<img src="figs/PREM3S9.gif" width="375"/> <img src="figs/PREM1T11.gif" width="375"/> 
+<img src="figs/PREM3S9.gif" width="400"/> <img src="figs/PREM1T11.gif" width="400"/> 
 </p>
 
 ## Reference
-The repository and pEVSL contain codes to compute planetary normal modes for [our SuperComputing (SC'18) paper](https://dl.acm.org/citation.cfm?id=3291751), see below. 
+The repository and pEVSL contain codes to compute planetary normal modes for [our SuperComputing (SC'18) paper](https://dl.acm.org/citation.cfm?id=3291751), where the parallel strong and weak scalabilities are shown. 
 ~~~
 @inproceedings{shi2018computing,
   title={Computing planetary interior normal modes with a highly parallel polynomial filtering eigensolver},
@@ -98,7 +98,17 @@ The repository and pEVSL contain codes to compute planetary normal modes for [ou
   organization={ACM/IEEE}
 }
 ~~~
-Parallel strong and weak scalabilities are shown in this paper. 
+
+The theory, discretization, and validation of our work are described in [a separate paper](https://arxiv.org/abs/1906.11082) on arXiv. 
+~~~
+@article{shi2019normalmodes
+  title{A Rayleigh-Ritz method based approach to computing seismic normal modes in the presence of an essential spectrum},
+  author={Shi, Jia and Li, Ruipeng and Xi, Yuanzhe and Saad, Yousef and de Hoop, Maarten V},
+  journal={arXiv preprint arXiv:1906.11082},
+  year={2019}
+}
+~~~
+
 
 ## Contact 
 Please report issues under this repository. Please send your suggestions and comments to jia.shi@rice.edu. Contributions are welcome. 
