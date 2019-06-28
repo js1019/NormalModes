@@ -63,7 +63,7 @@ Please edit makefile.in for right paths.
 We have two makefile.in examples for GNU and Intel compiler users. 
 You may then go to src/ and type 
 ~~~
-make clean; make; 
+make;
 ~~~
 The installation will also be easy and simple. 
 
@@ -101,7 +101,7 @@ The repository and pEVSL contain codes to compute planetary normal modes for [ou
 
 The theory, discretization and validation of our work are described in [a separate paper](https://arxiv.org/abs/1906.11082) on arXiv. 
 ~~~
-@article{shi2019normalmodes
+@article{shi2019normalmodes,
   title{A Rayleigh-Ritz method based approach to computing seismic normal modes in the presence of an essential spectrum},
   author={Shi, Jia and Li, Ruipeng and Xi, Yuanzhe and Saad, Yousef and de Hoop, Maarten V},
   journal={arXiv preprint arXiv:1906.11082},
