@@ -195,7 +195,7 @@ module para_mod
        if (pin%CGmethod) then 
           print*, 'apply the Continuous Galerkin finite element method'
        endif
-       print*, 'mesh name:   ', trim(pin%basename) 
+       print*, 'mesh name: ', trim(pin%basename) 
        print*, 'input directory: ',  trim(pin%inputdir)
        print*, 'output directory: ', trim(pin%outputdir)
        print*, 'polynomial order', int(pin%s%pOrder,2)
@@ -203,7 +203,7 @@ module para_mod
        print*, 'lower frequency in mHz', pin%lowfreq
        print*, 'upper frequency in mHz', pin%upfreq
        print*, 'header file name: ', trim(pin%fhd) 
-       print*, 'ele file name: ', trim(pin%fele) 
+       print*, 'element file name: ', trim(pin%fele) 
        print*, 'node file name: ', trim(pin%fnode) 
        print*, 'neigh file name: ', trim(pin%fneigh) 
        print*, 'Vp file name: ', trim(pin%fvpt) 
@@ -218,7 +218,7 @@ module para_mod
     endif 
 
     if (pin%lowfreq .ge. pin%upfreq) then 
-       print*, 'error: please check input frequencies' 
+       print*, 'Error: please check input frequencies' 
        stop
     endif 
 

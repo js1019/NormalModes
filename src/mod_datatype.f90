@@ -1,5 +1,5 @@
 !************************************************************************!
-!*  This module declares datatypes and data structures                  *!
+!*  This module declares data types and data structures                 *!
 !*                                                                      *!
 !*  by Jia Shi, shijia1019@gmail.com                                    *!
 !*                                                                      *!
@@ -25,7 +25,7 @@ module datatype_mod
         integer                          :: EtoV(6,2)
         integer                          :: FtoE(4,3)
         integer                          :: FtoV(4,3)
-        ! vertice ids
+        ! vertices ids
         integer                          :: vord(4)   
         real(kind=rkind)                 :: vert_crs(3,4)
         real(kind=rkind)                 :: sJac(4)
@@ -47,7 +47,7 @@ module datatype_mod
         real(kind=rkind)                 :: Fscale(4)      
     end type tetrahedron
 
-    ! separate fuild and solid
+    ! separate fluid and solid
     type :: elements
         integer                          :: ClNele
         integer, allocatable             :: Clelist(:)        ! (ClNele) 

@@ -10,8 +10,6 @@ basename    = prem_3L_3k.1
 inputdir   = /scratch/04149/tg834482/trueG/input/PREM3k/
 outputdir  = /scratch/04149/tg834482/trueG/output/PREM3k/ 
 
- 
-CGMethod = .TRUE.
 
 lowfreq      = 0.1 # mHz 
 upfreq       = 1.0 # mHz

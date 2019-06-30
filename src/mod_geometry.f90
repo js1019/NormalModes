@@ -1,9 +1,8 @@
 !*****************************************************************!
-!*  This module converts inputed mesh file to CG mesh structure  *!
-!*  Jia Shi, is still working on it                              *!
-!*  This module constructs the geometry information needed       *!
+!*  This module converts input mesh file to CG mesh structure    *!
+!*  and also constructs the geometry information needed          *!
 !*  It is very important to get everything right                 *!
-!*  TODO load balance                                            *!  
+!*  TODO always check load balance                               *!  
 !*****************************************************************!
 module geometry_mod
     
@@ -55,11 +54,6 @@ module geometry_mod
     call Build_reference(pin%s%pOrder,pin%s%Nfp,pin%s%pNp,refs)
     call Build_reference(pin%f%pOrder,pin%f%Nfp,pin%f%pNp,reff)
   
-    !do i = 1,4 
-    !print*,refs%Fmask(:,i)
-    !print*,refs%FtoV(i,:)
-    !enddo
-    !print*, sum(refs%MassM(:,2))
 
     !--------------------------------------
     ! new 04302018 JS

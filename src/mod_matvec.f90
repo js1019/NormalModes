@@ -34,7 +34,7 @@ contains
 !$OMP PARALLEL private(nthd)
   mymatvec%nthd = omp_get_num_threads()
 !$OMP END PARALLEL
-    if(unstrM%rank.eq.0) print*,'number of threads', mymatvec%nthd
+    if(unstrM%rank.eq.0) print*,'check number of threads', mymatvec%nthd
     
     mymatvec%rank              = unstrM%rank
     mymatvec%comm              = unstrM%comm

@@ -1,5 +1,5 @@
 !*****************************************************************!
-!* this module contains datatype for CG models, matrix and RHS    !
+!* this module contains data type for CG models, matrix and RHS   !
 !* By Jia Shi                                                     !  
 !*****************************************************************!
 module cg_datatype_mod

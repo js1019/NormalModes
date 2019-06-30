@@ -36,7 +36,7 @@ module cg_models_mod
  
      !integer                            :: myrank,ierr
       
-     ! set up some models parameters
+     ! set up some model parameters
      models%p_vp = 1; models%p_vs = 2; models%p_rho = 3
      models%nmps = 3; models%Gsiz  = pin%s%pNp*unstrM%Ntet
      models%siz = pin%s%pNp*unstrM%ClNele
