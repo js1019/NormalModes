@@ -72,10 +72,10 @@ The installation will also be easy and simple.
 Please check the demos/global_conf, which shows an **extremely simple** parameter setting. 
 Since the problem is deterministic, there are only a few parameters that are needed to compute the normal modes. 
 You will then be able to obtain _all_ the eigenpairs in the prescribed frequency interval. 
-The values of eigenfrequencies will be shown at the end of the computation as well as their relative errors, i.e., ||Ax-&lambda;Bx||/||&lambda;||, which is typically around 10^-10. 
+The values of eigenfrequencies will be shown at the end of the computation as well as their relative errors, i.e., ||Ax-&lambda;Bx||/||&lambda;||, which is typically around **10^-13**. 
 The eigenfunctions will be saved in the binary format. Please check the README.md under demos/ for more details. 
 
-**Tips**: Please always check the performance and scalability before you run large-scale applications. 
+**Tips**: Please always check the performance and scalability before running large-scale applications. 
 
 **Visualization**: You will need to use scripts in [PlanetaryModels](https://github.com/js1019/PlanetaryModels) and [Paraview](https://www.paraview.org/) to visualize your results. Here, we show animations created by Paraview: [0S2](https://www.youtube.com/watch?v=DDfGHmqCMN0&list=PLUp2thaj3ruEVTLWazoRfqRK53t4hbYel&index=5&t=0s), 
 [0T2](https://www.youtube.com/watch?v=hxeDz8ncNH4), 
