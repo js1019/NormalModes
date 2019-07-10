@@ -9,6 +9,7 @@ We provide four test examples:
 - a small standard Earth model in models/input/PREM3k/; 
 - a Moon model in models/input/Mtopo100k/; 
 - a small Mars model in models/input/RTMDWAK8k/. 
+
 Due to the limit of file sizes, we only provide small models. 
 
 You can directly use the current global_conf to run your first test! 
