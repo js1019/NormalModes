@@ -4,13 +4,12 @@ Once you compile the code, you should be able to run applications in this demo.
 We have a script `Dev.sh` to run this code via using SLURM. 
 You can set up the number of MPI processes and threads, etc. 
 
-We provide four test examples: 
+Due to the limit of file sizes, we only provide four small models:   
 - a constant solid elastic ball in models/input/CONST3k/; 
-- a small standard Earth model in models/input/PREM3k/; 
+- a standard Earth model in models/input/PREM3k/; 
 - a Moon model in models/input/Mtopo100k/; 
-- a small Mars model in models/input/RTMDWAK8k/. 
+- a Mars model in models/input/RTMDWAK8k/. 
 
-Due to the limit of file sizes, we only provide small models. 
 
 You can directly use the current global_conf to run your first test! 
 You can run JOB = 1 or 2 and pOrder = 1 or 2 with various lowfreq and upfreq.
