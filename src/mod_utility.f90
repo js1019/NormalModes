@@ -46,20 +46,23 @@ module utility_mod
     if (rank.eq.0) then
        if (logid.eq.1.or.logid.eq.0) then
          call date_and_time(values=time_array)
-         prog_start_time = real(time_array(3),8)*3600.0D0*24.0D0 &
-                         + real(time_array(5),8)*3600.0D0        &
-                         + real(time_array(6),8)*60.0D0          &
-                         + real(time_array(7),8)                 &
-                         + real(time_array(8),8)*0.001D0
+         !prog_start_time = real(time_array(3),8)*3600.0D0*24.0D0 &
+         !                + real(time_array(5),8)*3600.0D0        &
+         !                + real(time_array(6),8)*60.0D0          &
+         !                + real(time_array(7),8)                 &
+         !                + real(time_array(8),8)*0.001D0
+
+         call cpu_time(prog_start_time)
          write(pin%logfid,*) " Start program at time elapsed = 0.0 second."
          print*, "Start program at time elapsed = 0.0 second."
        else
          call date_and_time(values=time_array)
-         current_time    = real(time_array(3),8)*3600.0D0*24.0D0 &
-                         + real(time_array(5),8)*3600.0D0        &
-                         + real(time_array(6),8)*60.0D0          &
-                         + real(time_array(7),8)                 &
-                         + real(time_array(8),8)*0.001D0
+         !current_time    = real(time_array(3),8)*3600.0D0*24.0D0 &
+         !                + real(time_array(5),8)*3600.0D0        &
+         !                + real(time_array(6),8)*60.0D0          &
+         !                + real(time_array(7),8)                 &
+         !                + real(time_array(8),8)*0.001D0
+         call cpu_time(current_time)
          time_elapsed = current_time - prog_start_time
          !print*, current_time, time_elapsed
          write(pin%logfid,*) " Time elapsed = ",time_elapsed,"seconds."
