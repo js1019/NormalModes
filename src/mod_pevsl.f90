@@ -117,7 +117,7 @@ module pevsl_mod
      !MLAN = MIN(MLAN, mymatvec%Gpbsiz)
      MAXIT = 3*MLAN
      !print*, MAXIT
-     TOL = 1.0D8
+     TOL = 1.0D-8
 
      call pEVSL_CHEBLANNR_F90(pevslAB, XINTV, MAXIT, TOL, POL)
 
@@ -155,7 +155,7 @@ module pevsl_mod
             call mpi_reduce(tmperr,errd,1,mpi_real8,mpi_sum,0,mymatvec%comm,ierr)
             !tmperr = tmperr/dabs(EIGVAL(J))
             if (mymatvec%rank .eq. 0) then
-               eigerr(J) = dsqrt(errd)/real(mymatvec%Gpbsiz,8)/abs(EIGVAL(J))
+               eigerr(J) = dsqrt(errd/real(mymatvec%Gpbsiz,8))/abs(EIGVAL(J))
                !print*, 'eigenvalues', EIGVAL(J), 'relative error', eigerr(J)
                !print*, tmperr, errd
             endif
