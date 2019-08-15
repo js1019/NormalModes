@@ -6,9 +6,9 @@ LIBEVSL       = -L$(EVSL_DIR) -lpevsl
 iterobj       = $(EVSL_DIR)/EXTERNAL/ITERSOL/chebiter.o
 
 # fmm
-FMM_DIR       = $(HOME)/exafmm-alpha/wrappers
-LIBFMM        = -L$(FMM_DIR)/libpetiga_exafmm_laplace_a-petiga.o \
-                -L$(FMM_DIR) -lpetiga_exafmm_laplace -lstdc++ -liomp5 -ltbb 
+#FMM_DIR       = $(HOME)/exafmm-alpha/wrappers
+#LIBFMM        = -L$(FMM_DIR)/libpetiga_exafmm_laplace_a-petiga.o \
+#                -L$(FMM_DIR) -lpetiga_exafmm_laplace -lstdc++ -liomp5 -ltbb 
 #LIBFMM        = -ansi_alias -L$(FMM_DIR) -lcharmm_exafmm -lstdc++ -lgomp #-ltbb 
 
 
