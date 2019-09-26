@@ -9,7 +9,7 @@ the resulting generalized eigenvalue problems.
 
 _Self-gravitation and rotation will be included in the future release._ 
 
-**News: The work is selected for [the student cluster competition](http://www.studentclustercompetition.us/) reproducibility challenge at [SC'19](https://sc19.supercomputing.org). 
+**News: This work is selected for [the student cluster competition](http://www.studentclustercompetition.us/) reproducibility challenge at [SC'19](https://sc19.supercomputing.org). 
 Please see [the official announcement](https://sc19.supercomputing.org/2019/04/19/from-sc-papers-to-student-cluster-competition-benchmarks-joining-forces-to-promote-reproducibility-in-hpc/) and [teams named](https://sc19.supercomputing.org/2019/06/10/teams-named-for-sc19-student-cluster-competition/).**
 
 ## Normal Modes: the expected outcome  
