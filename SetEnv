@@ -12,9 +12,9 @@
 #module load valgrind
 
 # for intel Stampede2
-module unload gcc 
-module unload impi
-module load intel 
-module load impi
+#module unload gcc 
+#module unload impi
+#module load intel 
+#module load impi
 
 
