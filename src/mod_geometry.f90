@@ -688,7 +688,7 @@ module geometry_mod
     real(C_float), allocatable, dimension(:)      :: tpwgts,ubvec  
 
     integer                                       :: i,j
-    integer(C_int64_t)                            :: comm
+    integer(C_int)                                :: comm
 
     if (unstrM%nproc.ge.2) then
        if (unstrM%fsexist) then
@@ -791,7 +791,7 @@ module geometry_mod
     real(C_float), allocatable, dimension(:)      :: tpwgts,ubvec  
 
     integer                                       :: i,j,nct
-    integer(c_int64_t)                            :: comm
+    integer(c_int)                                :: comm
 
    
     if (unstrM%nproc.ge.2) then

@@ -97,10 +97,14 @@ module parmetis_interface
  !end interface
 
 
+  ! This is a bit of a hack, but it is necessary to invoke the Fortran
+  ! API entry point for ParMETIS so that MPI handles are converted
+  ! properly.  Hence, use the C symbol name parmetis_v3_partmeshkway
+  ! (not the C ParMETIS API entry point ParMETIS_V3_PartMeshKway).
  interface
    integer(C_INT) function ParMETIS_V3_PartMeshKway(elmdist,eptr,eind,&
          elmwgt,wgtflag,numflag,ncon,ncommonnodes,nparts,tpwgts,ubvec,&
-         opts,edgecut,part,comm) bind(C,name="ParMETIS_V3_PartMeshKway")
+         opts,edgecut,part,comm) bind(C,name="parmetis_v3_partmeshkway")
    use, intrinsic                            :: ISO_C_BINDING
    implicit none 
    integer(C_INT)                            :: wgtflag,numflag,ncon,comm,&
@@ -166,13 +170,16 @@ module parmetis_interface
  !end interface
 
 
+ ! Similar to above, be sure to use the Fortran API entry point for
+ ! ParMETIS, not the C API entry point.
  interface
    integer(C_int64_t) function ParMETIS_V3_PartKway(vtxdist,xadj,adjncy,&
                   vwgt,adjwgt,wgtflag,numflag,ncon,nparts,tpwgts,ubvec,&
-             opts,edgecut,part,comm) bind(C,name="ParMETIS_V3_PartKway")
+             opts,edgecut,part,comm) bind(C,name="parmetis_v3_partkway")
    use, intrinsic                             :: ISO_C_BINDING
    implicit none 
-   integer(C_int64_t)                         :: wgtflag,numflag,ncon,comm,&
+   integer(C_INT)                             :: comm
+   integer(C_int64_t)                         :: wgtflag,numflag,ncon,&
                                                 nparts,edgecut
    integer(C_int64_t), dimension(*)           :: vtxdist,xadj,adjncy,vwgt
    type(C_PTR), value                         :: adjwgt
