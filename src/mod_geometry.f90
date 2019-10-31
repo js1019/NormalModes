@@ -333,7 +333,11 @@ module geometry_mod
        do j = 1,4
           k = (i-1)*12+(j-1)*3
           v2vh(k+1:k+3) = e2v0((i-1)*4+j)
-          v2vl(k+1:k+3) = sl0(refs%FtoV(j,:)) 
+          !v2vl(k+1:k+3) = sl0(refs%FtoV(j,:))
+          ! todo check to deal with intel/19
+          do l = 1,3
+             v2vl(k+l) = sl0(refs%FtoV(j,l))
+          enddo 
        enddo
     enddo
     !print*, refs%FtoV(1,:) 
