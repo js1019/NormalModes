@@ -178,7 +178,8 @@ module parmetis_interface
              opts,edgecut,part,comm) bind(C,name="parmetis_v3_partkway")
    use, intrinsic                             :: ISO_C_BINDING
    implicit none 
-   integer(C_int64_t)                         :: wgtflag,numflag,ncon,comm,&
+   integer(C_INT)                             :: comm
+   integer(C_int64_t)                         :: wgtflag,numflag,ncon,&
                                                 nparts,edgecut
    integer(C_int64_t), dimension(*)           :: vtxdist,xadj,adjncy,vwgt
    type(C_PTR), value                         :: adjwgt
