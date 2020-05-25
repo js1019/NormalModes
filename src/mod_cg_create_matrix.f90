@@ -40,9 +40,9 @@ module cg_create_matrix_mod
     if (unstrM%fsexist) then
        if (.not. CGM%stat) call matrixstruct_general()
        if (unstrM%rank == 0 .and. .not. CGM%stat) then
-          print*, "the matrix structure (with fluid-solid) is done"
+          print*, "the matrix structure (with fluid or fluid-solid) is done"
        endif
-       call writelog("the matrix (f-s) structure is done",pin%comm)
+       call writelog("the matrix (f or f-s) structure is done",pin%comm)
       
        call CGFSE3D_ISO()
     else

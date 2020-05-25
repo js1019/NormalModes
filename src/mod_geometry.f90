@@ -317,12 +317,21 @@ module geometry_mod
     call mpi_allreduce(chk0,chk1,unstrM%nproc,mpi_integer,&
                  mpi_sum,unstrM%comm,ierr)
 
-    if (maxval(chk1) .gt. 1) then
-       unstrM%fsexist = .true.
-       if (unstrM%rank.eq.0) print*, 'fluid-solid exists'
-    else
+    !if (maxval(chk1) .gt. 1) then
+    !   unstrM%fsexist = .true.
+    !   if (unstrM%rank.eq.0) print*, 'fluid (solid) exists'
+    !else
+    !   unstrM%fsexist = .false.
+    !   if (unstrM%rank.eq.0) print*, 'NO fluid-solid'
+    !endif
+ 
+    ! changed JS 0524/2020
+    if (maxval(chk1) .eq. 0) then
        unstrM%fsexist = .false.
-       if (unstrM%rank.eq.0) print*, 'NO fluid-solid'
+       if (unstrM%rank.eq.0) print*, 'Pure solid'
+    else
+       unstrM%fsexist = .true.
+       if (unstrM%rank.eq.0) print*, 'fluid (solid) exists'
     endif
 
     ! about v2v
