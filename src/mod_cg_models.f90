@@ -57,19 +57,14 @@ module cg_models_mod
      call pnm_read_model(pin%frhot,models%p_rho,pin%s%pNp)
      if (unstrM%rank == 0) print*, "read density file"
 
+     ! check values
+     !print*, minval(models%coeff_loc(:,models%p_vp)),unstrM%rank
+     !print*, maxval(models%coeff_loc(:,models%p_vp)),unstrM%rank
+     !models%coeff_loc = models%coeff_loc/1.D3 
+
+
      call separate_fs()
 
-     !if (pin%selfG) then
-     !   inquire(file=trim(pin%fgrav), exist=existence)
-     !   if (existence) then 
-     !      call fwd_read_gravaccel(pin%fgrav,pin%s%pNp)        
-     !      if (unstrM%rank == 0) print*, "read gravitational acceleration g"
-     !   else 
-     !      if (unstrM%rank == 0) print*, "no gravitational acceleration file"
-     !      ! TODO add fmm library into current code
-     !      stop 
-     !   endif 
-     !endif
 
      if (pin%selfG) then
         call pnm_read_gravaccel(pin%fgrav,pin%s%pNp)
@@ -337,7 +332,7 @@ module cg_models_mod
       nints = unstrM%org%nele*pNp 
 
       offset = unstrM%org%edist(unstrM%rank+1)*pNp*leight
-
+      !if (unstrM%rank.eq.0) print*, unstrM%org%edist
       allocate(buf(nints)); buf = 0.0D0
        
       call mpi_file_read_at(fid,offset,buf,nints,mpi_real8,stat,ierr)
@@ -381,6 +376,19 @@ module cg_models_mod
       real*8, allocatable                     :: buf(:),bufn(:,:)
 
       real*8, allocatable, dimension(:)       :: rdt0,rdt1
+      
+      logical                                 :: alive
+
+
+      ! check 
+      if (unstrM%rank == 0) then
+         inquire(file=trim(fname),exist=alive)
+         if (.not.alive) then
+            print*,'Error: File "',trim(fname),'" does not exist.'
+            stop
+         endif
+      endif 
+
 
       leight = 8; lfour = 4
 
@@ -393,7 +401,7 @@ module cg_models_mod
 
       call mpi_file_open(unstrM%comm,fname,mpi_mode_rdonly,&
            mpi_info_null,fid,ierr)
-
+      !print*,ierr,fid,unstrM%rank
       offset = unstrM%org%edist(unstrM%rank+1)*pNp*3*leight
       !print*,offset,nints,unstrM%rank
       call mpi_file_read_at(fid,offset,buf,nints,mpi_real8,stat,ierr)

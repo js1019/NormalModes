@@ -72,7 +72,7 @@ module pevsl_mod
      call PEVSL_SETBSOL_CHEBITER_F90(pevslAB, CHEBTYPE, MYMATVEC%CHEBB)
      !call PEVSL_SETLTSOL_LSPOL_F90(pevslAB, MYMATVEC%LSPOLBSQRT)
      
-     if (.not.mymatvec%fsexist) then    
+     if (.not.mymatvec%fsexist.and..not.mymatvec%purefluid) then    
         call PEVSL_SETAMV_F90(pevslAB, sparseAV, mymatvec)
      else
         call PEVSL_SETAMV_F90(pevslAB, sparsefsAV, mymatvec)
@@ -130,7 +130,7 @@ module pevsl_mod
         call pEVSL_COPY_RESULT_F90(pevslAB, EIGVAL, EIGVEC, mymatvec%pbsiz)
 
         call pEVSL_chebiterstatsprint_f90(mymatvec%chebb)
-        if (mymatvec%fsexist) then 
+        if (mymatvec%fsexist.or.mymatvec%purefluid) then 
            call pEVSL_chebiterstatsprint_f90(mymatvec%chebAp)
         endif
         ! --------------------------------------------------------------------------
@@ -144,7 +144,7 @@ module pevsl_mod
         do J = 1,NEVOUT
             !! added 
             inputv = EIGVEC((j-1)*mymatvec%pbsiz+1:j*mymatvec%pbsiz)
-            if (.not.mymatvec%fsexist) then 
+            if (.not.mymatvec%fsexist.and..not.mymatvec%purefluid) then 
                call sparseAV(inputv,outputav,mymatvec)
             else
                call sparsefsAV(inputv,outputav,mymatvec)

@@ -40,6 +40,7 @@ contains
     mymatvec%comm              = unstrM%comm
     mymatvec%nproc             = unstrM%nproc
     mymatvec%fsexist           = unstrM%fsexist
+    mymatvec%purefluid         = unstrM%purefluid
     mymatvec%sG                = pin%phi1
 
     ! B matrix information
@@ -94,7 +95,7 @@ contains
     call PEVSL_FINISH_F90(pevslB)
 
 
-    if (unstrM%fsexist) then 
+    if (unstrM%fsexist.or.unstrM%purefluid) then 
        ! Ad matrix information
        mymatvec%Ad%siz            = CGM%Ad%siz  
        mymatvec%Ad%Gsiz           = CGM%Ad%Gsiz

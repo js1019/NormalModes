@@ -160,10 +160,13 @@ module datatype_mod
         integer, allocatable             :: Cvpid(:)          ! (cnvtx)
         ! locations
         real(kind=rkind), allocatable    :: Cv_crs(:,:)       ! (3,cnvtx)
-        !---------------------- for the fluid-solid ---------------------------!
+        !---------------------- for the fluid-solid --------------------------!
         ! status fluid-solid 
         logical                          :: fsexist
-        !--------------------------local variables-----------------------------!
+        !--------------------------- pure fluid ------------------------------!
+        ! status pure fluid
+        logical                          :: purefluid
+        !--------------------------local variables----------------------------!
         ! from domain decomposition
         integer                          :: lNele
         integer, allocatable             :: lelist(:)         ! lNele

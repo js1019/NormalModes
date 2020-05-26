@@ -327,11 +327,17 @@ module geometry_mod
  
     ! changed JS 0524/2020
     if (maxval(chk1) .eq. 0) then
-       unstrM%fsexist = .false.
+       unstrM%fsexist   = .false.
+       unstrM%purefluid = .false.
        if (unstrM%rank.eq.0) print*, 'Pure solid'
-    else
-       unstrM%fsexist = .true.
-       if (unstrM%rank.eq.0) print*, 'fluid (solid) exists'
+    elseif (maxval(chk1).eq.1) then
+       unstrM%fsexist   = .false.
+       unstrM%purefluid = .true.
+       if (unstrM%rank.eq.0) print*, 'Pure fluid'
+    else 
+       unstrM%fsexist   = .true.
+       unstrM%purefluid = .false.
+       if (unstrM%rank.eq.0) print*, 'fluid-solid exists'
     endif
 
     ! about v2v
@@ -696,7 +702,7 @@ module geometry_mod
     type(C_PTR)                                   :: vwgt,adjwgt
     real(C_float), allocatable, dimension(:)      :: tpwgts,ubvec  
 
-    integer                                       :: i,j
+    integer                                       :: i,j,ierr
     integer(C_int)                                :: comm
 
     if (unstrM%nproc.ge.2) then
@@ -739,6 +745,7 @@ module geometry_mod
           do i = 1,unstrM%org%nvtx
              unstrM%org%part(i) = opart(i-1)
           enddo
+          call mpi_barrier(unstrM%comm,ierr) 
           if (unstrM%rank.eq.unstrM%nproc-1) print*, 'partition f-s'
        else 
           allocate(adjncy(unstrM%org%v2vsiz)); adjncy = unstrM%org%v2v - 1
@@ -762,7 +769,7 @@ module geometry_mod
           allocate(part(0:unstrM%org%nvtx-1)); part=-1
  
           allocate(unstrM%org%part(unstrM%org%nvtx))
-          print*, 'check', unstrM%rank
+          !print*, 'check', unstrM%rank
           parmetis_call_status = ParMETIS_V3_PartKway(vtxdist,&
             v2vdist,adjncy,myvwgt,adjwgt,wgtflag,numflag,ncon,&
           nparts,tpwgts,ubvec,options,edgecut,part,comm)  

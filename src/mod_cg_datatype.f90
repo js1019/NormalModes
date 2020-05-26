@@ -95,7 +95,7 @@ module cg_datatype_mod
        integer*8                             :: sEV,sETV        ! matvec
        integer*8                             :: chebB,chebAp    ! solve
        integer*8                             :: lspolBsqrt
-       logical                               :: fsexist,sG
+       logical                               :: fsexist,sG,purefluid
        logical*1                             :: verbose
        integer                               :: ncf
        integer, allocatable                  :: flist(:)        ! (ncf)
