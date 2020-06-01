@@ -23,8 +23,7 @@ module cg_datatype_mod
        integer                               :: nsf    = 0             
        !--------------------- for self gravitation --------------------------!
        ! local gravitational acceleration
-       real(kind=rkind), allocatable         :: g0(:,:,:)       ! (4,3,ClNele)
-       !real(kind=rkind), allocatable         :: loc_gpot(:,:)   ! (4,ClNele)
+       real(kind=rkind), allocatable         :: g0(:,:,:)       ! (pNp,3,ClNele)
        ! density jumps
        integer                               :: lsf
        real(kind=rkind), allocatable         :: srho(:,:)       ! (2,lsf)

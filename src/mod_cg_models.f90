@@ -421,7 +421,11 @@ module cg_models_mod
       
       call mpi_file_close(fid,ierr)
       !print*, maxval(models%g0),minval(models%g0),unstrM%rank
-
+      !do i = 1,unstrM%ClNele
+      !   do j = 1,4 
+      !      print*, dsqrt(sum(models%g0(j,:,i)**2))
+      !   enddo
+      !enddo
    end subroutine pnm_read_gravaccel
 
 

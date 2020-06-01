@@ -148,6 +148,10 @@ module cg_create_matrix_mod
     real(kind=rkind), dimension(3,3)                    :: ndism,invdism,dgk1
     real(kind=rkind), dimension(3)                      :: drho0
    
+    ! for fluid surface integral
+    real(kind=rkind)                                    :: surfrho,sgn
+    real(kind=rkind), dimension(pin%f%Nfp)              :: surfgn
+    real(kind=rkind), dimension(pin%f%Nfp,pin%f%Nfp)    :: surfp     
 
 
     dm   = 3; les = pin%s%pNp*dm; 
@@ -248,12 +252,18 @@ module cg_create_matrix_mod
                 N2k1(i) = 0.0D0
              endif 
           enddo
+          ! add JS 05512020 
+          ! for pure fluid planet, set N2 to zero
+          if (unstrM%purefluid) then 
+             N2k1 = 0.0D0
+          endif  
           N2avg = sum(N2k1)/real(pin%s%pNp,8)    
  
           !N2k1 = N2avg 
           !print*,N2k1 
           !N2avg = 0.0D0 
-          !print*, N2avg,k,unstrM%rank  
+          !print*, N2avg,k,unstrM%rank 
+          
        endif
 
        ! JS 05252020 an important update
@@ -473,7 +483,7 @@ module cg_create_matrix_mod
              do i = 1,3; do j = 1,3
                 if (i .eq. j) then
                    ! N**2 part
-                   gtmpij = normalg(:,j)*N2K1*rhot!/N2avg
+                   gtmpij = normalg(:,j)*N2k1*rhot!/N2avg
                    !gtmpij = normalg(:,j)!*rhot!*N2K1!/N2avg
                    call diagmatrix(rhotmp,gtmpij,pin%s%pNp) 
                    rhomtx  = matmul(refs%MassM,rhotmp) 
@@ -552,7 +562,7 @@ module cg_create_matrix_mod
                    !print*,maxval(OPrhodi)
                 else
                    ! N**2 part
-                   gtmpij = normalg(:,j)*N2K1*rhot!/N2avg
+                   gtmpij = normalg(:,j)*N2k1*rhot!/N2avg
                    !gtmpij = normalg(:,j)!*rhot*N2K1!/N2avg
                    call diagmatrix(rhotmp,gtmpij,pin%s%pNp) 
                    rhomtx  = matmul(refs%MassM,rhotmp) 
@@ -617,6 +627,29 @@ module cg_create_matrix_mod
           FT(3*pin%s%pNp+1:3*pin%s%pNp+pin%f%pNp,3*pin%s%pNp+1:3*pin%s%pNp+pin%f%pNp) = &
                      - unstrM%loc_detJ(k)*flam
 
+
+          ! JS 05/31/2020 deal with fluid boundary condition
+          if (pin%JOB.ne.1.or.pin%JOB.ne.4) then  
+             do i = 1,4 
+                if (unstrM%ClNeigh(i,k).eq.-1) then
+                   ! the surface is at the boundary !!
+                   surfrho = sum(models%coeff_loc((k-1)*pin%s%pNp+refs%Fmask(:,i),&
+                                  models%p_rho))/real(pin%f%Nfp,8)
+                   surfgn  = 0.0D0
+                   do j = 1,3
+                      surfgn = surfgn + gk1(refs%Fmask(:,i),j)**2
+                   enddo 
+                   sgn = sum(dsqrt(surfgn))/real(pin%f%Nfp,8) 
+                   !print*, surfrho,surfgn,i,k
+                   !print*, surfrho,sgn*1.0D3,i,k
+                   surfp = - refs%MassF(:,:,i)/sgn/surfrho
+                   FT(3*pin%s%pNp+refs%Fmask(:,i),3*pin%s%pNp+refs%Fmask(:,i)) =&
+                   FT(3*pin%s%pNp+refs%Fmask(:,i),3*pin%s%pNp+refs%Fmask(:,i)) +&
+                            surfp*unstrM%loc_sJac(i,k)  
+                endif
+             enddo
+
+          endif ! end pin%JOB
           
           ! add the values into the matrices
           do m = 1,pin%f%pNp
@@ -767,104 +800,100 @@ module cg_create_matrix_mod
                    enddo; enddo
                    !print*, maxval(smassij)              
                    !print*, unstrM%loc_sJac(fcid,k),fcid,k
+
                    ! update Ad 
-                   !do m = 1,4
-                      !if (m.ne.fcid) then
-                      do m = 1,pin%s%Nfp
-                         m0 = refs%Fmask(m,fcid) 
-                         l   = unstrM%lt2vid((k-1)*pin%s%pNp+m0)
-                         if (unstrM%Cvpid(l).eq.unstrM%rank) then
-                            i = unstrM%loc_t2v(m0,k)  
-                            call findorder(i,unstrM%new%vlist,vid)
-                            do p = 1,3
-                               ! fluid pts + CGM%Ad%rnum(vid) - 3 
-                               j = sum(CGM%Ad%rnum(1:vid)) - CGM%Ad%rnum(vid) + p
-                               les = CGM%Ad%rowdist(j+1)-CGM%Ad%rowdist(j)
-                               allocate(ntmp(les))
-                               ntmp = CGM%Ad%col(CGM%Ad%rowdist(j)+1:CGM%Ad%rowdist(j+1))
-                               !nn = 0
-                               do n = 1,pin%s%Nfp
-                                  !if (n.ne.fcid) then 
-                                     !nn = nn + 1
-                                     nn = refs%Fmask(n,fcid)
-                                     vid0 = unstrM%lt2vid((k-1)*pin%s%pNp+nn) 
-                                     do q = 1,3
-                                        vid1 = CGM%vstt(vid0) + q
-                                        !print*,vid1
-                                        call findorder(vid1,ntmp,colid)
-                                        CGM%Ad%val(CGM%Ad%rowdist(j)+colid) = &
-                                        CGM%Ad%val(CGM%Ad%rowdist(j)+colid) - &
-                                        SCM((p-1)*pin%s%Nfp+m,(q-1)*pin%s%Nfp+n)  
-                                     enddo
-                                  !endif
-                               enddo
-                               deallocate(ntmp)
-                            enddo
-                         endif
-                      !endif
-                      enddo
-                endif
-                
-                !m0 = 0 
-                !do m = 1,4 
-                   !if (m.ne.fcid) then
-                      !m0 = m0 + 1
                    do m = 1,pin%s%Nfp
-                      m0 = refs%Fmask(m,fcid)
+                      m0 = refs%Fmask(m,fcid) 
                       l   = unstrM%lt2vid((k-1)*pin%s%pNp+m0)
                       if (unstrM%Cvpid(l).eq.unstrM%rank) then
                          i = unstrM%loc_t2v(m0,k)  
                          call findorder(i,unstrM%new%vlist,vid)
-                         ! for ET 
-                         j = sum(CGM%ET%rnum(1:vid)) - CGM%ET%rnum(vid) + 1
-                         les = CGM%ET%rowdist(j+1)-CGM%ET%rowdist(j)
+                         do p = 1,3
+                            ! fluid pts + CGM%Ad%rnum(vid) - 3 
+                            j = sum(CGM%Ad%rnum(1:vid)) - CGM%Ad%rnum(vid) + p
+                            les = CGM%Ad%rowdist(j+1)-CGM%Ad%rowdist(j)
+                            allocate(ntmp(les))
+                            ntmp = CGM%Ad%col(CGM%Ad%rowdist(j)+1:CGM%Ad%rowdist(j+1))
+                            !nn = 0
+                            do n = 1,pin%s%Nfp
+                               !if (n.ne.fcid) then 
+                                  !nn = nn + 1
+                                  nn = refs%Fmask(n,fcid)
+                                  vid0 = unstrM%lt2vid((k-1)*pin%s%pNp+nn) 
+                                  do q = 1,3
+                                     vid1 = CGM%vstt(vid0) + q
+                                     !print*,vid1
+                                     call findorder(vid1,ntmp,colid)
+                                     CGM%Ad%val(CGM%Ad%rowdist(j)+colid) = &
+                                     CGM%Ad%val(CGM%Ad%rowdist(j)+colid) - &
+                                     SCM((p-1)*pin%s%Nfp+m,(q-1)*pin%s%Nfp+n)  
+                                  enddo
+                               !endif
+                            enddo
+                            deallocate(ntmp)
+                         enddo
+                      endif
+                   !endif
+                   enddo
+                endif
+               
+                ! for ET and E 
+                do m = 1,pin%s%Nfp
+                   m0 = refs%Fmask(m,fcid)
+                   l   = unstrM%lt2vid((k-1)*pin%s%pNp+m0)
+                   if (unstrM%Cvpid(l).eq.unstrM%rank) then
+                      i = unstrM%loc_t2v(m0,k)  
+                      call findorder(i,unstrM%new%vlist,vid)
+                      ! for ET 
+                      j = sum(CGM%ET%rnum(1:vid)) - CGM%ET%rnum(vid) + 1
+                      les = CGM%ET%rowdist(j+1)-CGM%ET%rowdist(j)
+                      allocate(ntmp(les))
+                      ntmp = CGM%ET%col(CGM%ET%rowdist(j)+1:CGM%ET%rowdist(j+1))
+                      !nn = 0
+                      !do n = 1,4
+                         !if (n.ne.fcid) then
+                            !nn = nn + 1
+                         do n = 1,pin%s%Nfp
+                            nn = refs%Fmask(n,fcid)  
+                            vid0 = unstrM%lt2vid((k-1)*pin%s%pNp+nn)
+                            !print*, norm2(unstrM%Cv_crs(:,vid0))
+                            do q = 1,3 
+                               vid1 = CGM%vstt(vid0) + q
+                               call findorder(vid1,ntmp,colid)
+                               CGM%ET%val(CGM%ET%rowdist(j)+colid) = &
+                               CGM%ET%val(CGM%ET%rowdist(j)+colid) - &
+                               unstrM%loc_n(q,fcid,k)*unstrM%loc_sJac(fcid,k)*&
+                               refs%MassF(n,m,fcid)
+                            enddo 
+                         !endif
+                      enddo
+                      deallocate(ntmp) 
+                      ! for E matrix
+                      do p = 1,3
+                         j = sum(CGM%E%rnum(1:vid)) - 6 + p
+                         les = CGM%E%rowdist(j+1)-CGM%E%rowdist(j)
                          allocate(ntmp(les))
-                         ntmp = CGM%ET%col(CGM%ET%rowdist(j)+1:CGM%ET%rowdist(j+1))
+                         ntmp = CGM%E%col(CGM%E%rowdist(j)+1:CGM%E%rowdist(j+1))
                          !nn = 0
                          !do n = 1,4
                             !if (n.ne.fcid) then
                                !nn = nn + 1
                             do n = 1,pin%s%Nfp
                                nn = refs%Fmask(n,fcid)  
+                            
                                vid0 = unstrM%lt2vid((k-1)*pin%s%pNp+nn)
-                               !print*, norm2(unstrM%Cv_crs(:,vid0))
-                               do q = 1,3 
-                                  vid1 = CGM%vstt(vid0) + q
-                                  call findorder(vid1,ntmp,colid)
-                                  CGM%ET%val(CGM%ET%rowdist(j)+colid) = &
-                                  CGM%ET%val(CGM%ET%rowdist(j)+colid) - &
-                                  unstrM%loc_n(q,fcid,k)*unstrM%loc_sJac(fcid,k)*&
-                                  refs%MassF(n,m,fcid)
-                               enddo 
-                            !endif
-                         enddo
+                               vid1 = CGM%pstt(vid0) + 1
+                               call findorder(vid1,ntmp,colid)
+                               CGM%E%val(CGM%E%rowdist(j)+colid) = &
+                               CGM%E%val(CGM%E%rowdist(j)+colid) - &
+                               unstrM%loc_n(p,fcid,k)*unstrM%loc_sJac(fcid,k)*&
+                               refs%MassF(m,n,fcid)
+                            enddo
+                         !enddo
                          deallocate(ntmp) 
-                         ! for E matrix
-                         do p = 1,3
-                            j = sum(CGM%E%rnum(1:vid)) - 6 + p
-                            les = CGM%E%rowdist(j+1)-CGM%E%rowdist(j)
-                            allocate(ntmp(les))
-                            ntmp = CGM%E%col(CGM%E%rowdist(j)+1:CGM%E%rowdist(j+1))
-                            !nn = 0
-                            !do n = 1,4
-                               !if (n.ne.fcid) then
-                                  !nn = nn + 1
-                               do n = 1,pin%s%Nfp
-                                  nn = refs%Fmask(n,fcid)  
-                               
-                                  vid0 = unstrM%lt2vid((k-1)*pin%s%pNp+nn)
-                                  vid1 = CGM%pstt(vid0) + 1
-                                  call findorder(vid1,ntmp,colid)
-                                  CGM%E%val(CGM%E%rowdist(j)+colid) = &
-                                  CGM%E%val(CGM%E%rowdist(j)+colid) - &
-                                  unstrM%loc_n(p,fcid,k)*unstrM%loc_sJac(fcid,k)*&
-                                  refs%MassF(m,n,fcid)
-                               enddo
-                            !enddo
-                            deallocate(ntmp) 
-                         enddo
-                      endif 
-                   enddo
+                      enddo
+                   endif 
+                enddo
 
              endif ! find f-s triangle
           endif ! if false
