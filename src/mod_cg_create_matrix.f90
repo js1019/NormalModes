@@ -268,11 +268,11 @@ module cg_create_matrix_mod
 
        ! JS 05252020 an important update
        ! take the avarage 
-       C33(rows1) = sum(C33(rows1))/real(pin%s%pNp,8)     
-       C44(rows1) = sum(C44(rows1))/real(pin%s%pNp,8)     
-       lam   = C33(rows1) 
-       mu    = C44(rows1) 
-       rhot  = sum(models%coeff_loc(rows1,models%p_rho))/real(pin%s%pNp,8) 
+       !C33(rows1) = sum(C33(rows1))/real(pin%s%pNp,8)     
+       !C44(rows1) = sum(C44(rows1))/real(pin%s%pNp,8)     
+       !lam   = C33(rows1) 
+       !mu    = C44(rows1) 
+       !rhot  = sum(models%coeff_loc(rows1,models%p_rho))/real(pin%s%pNp,8) 
 
        
        ! for the solid region 
@@ -290,10 +290,10 @@ module cg_create_matrix_mod
                         unstrM%loc_invJ(3,2,k)*refs%Drst(:,:,2) +&
                         unstrM%loc_invJ(3,3,k)*refs%Drst(:,:,3)
       
-          !Mrho  = refs%MassM*sum(rhot)/real(pin%s%pNp)
-          call diagmatrix(Mrho,rhot,pin%s%pNp)
-          Mrho = matmul(Mrho,refs%MassM)+matmul(refs%MassM,Mrho)
-          Mrho = Mrho/2.0D0
+          Mrho  = refs%MassM*sum(rhot)/real(pin%s%pNp)
+          !call diagmatrix(Mrho,rhot,pin%s%pNp)
+          !Mrho = matmul(Mrho,refs%MassM)+matmul(refs%MassM,Mrho)
+          !Mrho = Mrho/2.0D0
  
           OPs  = 0.0D0
 
@@ -463,16 +463,17 @@ module cg_create_matrix_mod
           
         
           !fMrho  = reff%MassM*sum(rhot)/real(pin%s%pNp,8)
-          lamiv = 1.0D0/lam
+          !lamiv = 1.0D0/lam
+          lamiv = 1.0D0/(sum(lam)/real(pin%s%pNp,8))
           call diagmatrix(flam,lamiv,pin%s%pNp)
           flam = matmul(flam,refs%MassM)+matmul(refs%MassM,flam)
           flam = flam/2.0D0
 
           fOPs  = 0.0D0
-          !Mrho  = refs%MassM*sum(rhot)/real(pin%s%pNp,8)
-          call diagmatrix(Mrho,rhot,pin%s%pNp)
-          Mrho = matmul(Mrho,refs%MassM)+matmul(refs%MassM,Mrho)
-          Mrho = Mrho/2.0D0
+          Mrho  = refs%MassM*sum(rhot)/real(pin%s%pNp,8)
+          !call diagmatrix(Mrho,rhot,pin%s%pNp)
+          !Mrho = matmul(Mrho,refs%MassM)+matmul(refs%MassM,Mrho)
+          !Mrho = Mrho/2.0D0
 
           ! save derivative matrix 
           fDv2  = fDerv
@@ -645,7 +646,42 @@ module cg_create_matrix_mod
                    surfp = - refs%MassF(:,:,i)/sgn/surfrho
                    FT(3*pin%s%pNp+refs%Fmask(:,i),3*pin%s%pNp+refs%Fmask(:,i)) =&
                    FT(3*pin%s%pNp+refs%Fmask(:,i),3*pin%s%pNp+refs%Fmask(:,i)) +&
-                            surfp*unstrM%loc_sJac(i,k)  
+                            surfp*unstrM%loc_sJac(i,k) 
+                else ! todo check fluid-solid boundary
+                   ! the surface is at the boundary !!
+                   surfrho = sum(models%coeff_loc((k-1)*pin%s%pNp+refs%Fmask(:,i),&
+                                  models%p_rho))/real(pin%f%Nfp,8)
+                   !surfrho = sum(models%coeff_loc((k-1)*pin%s%pNp+1:k*pin%s%pNp,&
+                   !               models%p_rho))/real(pin%f%pNp,8)
+                   !print*, sgn-surfrho,sgn,k
+                   surfgn  = 0.0D0
+                   do j = 1,3
+                      surfgn =surfgn + gk1(refs%Fmask(:,i),j)*unstrM%loc_n(j,i,k)
+                   enddo 
+                   sgn = sum(surfgn)/real(pin%f%Nfp,8) 
+                   !print*, surfrho,surfgn,i,k
+                   !print*, surfrho,sgn*1.0D3,i,k
+                   ! check f-s boundary
+                   cout = 0
+                   do m = 1,4
+                      if (m.ne.i) then
+                         l = unstrM%lt2vid((k-1)*pin%s%pNp+refs%vord(m))
+                         if (CGM%vnum(l).eq.6) then 
+                            cout = cout + 1
+                         endif
+                      endif
+                   enddo 
+          
+                   if (cout.lt.3) then  
+                      do j = 1,3
+                         surfp = - refs%MassF(:,:,i)*sgn*surfrho                
+                         FT((j-1)*pin%s%pNp+refs%Fmask(:,i),&
+                            (j-1)*pin%s%pNp+refs%Fmask(:,i)) =&
+                         FT((j-1)*pin%s%pNp+refs%Fmask(:,i),&
+                            (j-1)*pin%s%pNp+refs%Fmask(:,i)) +&
+                             surfp*unstrM%loc_sJac(i,k)*unstrM%loc_n(j,i,k)**2
+                      enddo 
+                   endif
                 endif
              enddo
 
