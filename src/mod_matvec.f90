@@ -157,7 +157,7 @@ contains
        call PEVSL_SETAMV_F90(pevslAp, sparseApV, mymatvec)
        ! NEED TO HAVE EIG BOUNDS OF B IN SETUP [DONE ABOVE BUT WILL DO AGAIN IN
        ! SETUP]
-       MLAN = 1000; LANSTEP = 3000
+       MLAN = 1000; LANSTEP = 2000
        TOL = 1.0D-12; CHEBTYPE = 2
        call pEVSL_LANBOUNDS_F90(pevslAp, MLAN, LANSTEP,TOL, LMIN, LMAX)
 

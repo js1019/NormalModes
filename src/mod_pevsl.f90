@@ -49,6 +49,7 @@ module pevsl_mod
      MLAN = 3000
      LANSTEP = 5000
     
+     TOL = 1.0D-8
       
      call pEVSL_Start_F90(mymatvec%comm,pevslAB)
      
@@ -117,7 +118,6 @@ module pevsl_mod
      !MLAN = MIN(MLAN, mymatvec%Gpbsiz)
      MAXIT = 3*MLAN
      !print*, MAXIT
-     TOL = 1.0D-8
 
      call pEVSL_CHEBLANNR_F90(pevslAB, XINTV, MAXIT, TOL, POL)
 
