@@ -157,7 +157,7 @@ contains
        call PEVSL_SETAMV_F90(pevslAp, sparseApV, mymatvec)
        ! NEED TO HAVE EIG BOUNDS OF B IN SETUP [DONE ABOVE BUT WILL DO AGAIN IN
        ! SETUP]
-       MLAN = 1000; LANSTEP = 2000
+       MLAN = 2000; LANSTEP = 3000
        TOL = 1.0D-12; CHEBTYPE = 2
        call pEVSL_LANBOUNDS_F90(pevslAp, MLAN, LANSTEP,TOL, LMIN, LMAX)
 
@@ -165,7 +165,7 @@ contains
        if (mymatvec%rank.eq.0) print*, 'Ap cond. number ', LMAX/LMIN, LMIN, LMAX
 
        if (pin%s%porder.eq.2) then 
-          CHEBDEG = 45 
+          CHEBDEG = max(min(int(LMAX/LMIN),15)*3,100) 
        else 
           CHEBDEG = 25 !25 !30
        endif

@@ -49,7 +49,7 @@ module pevsl_mod
      MLAN = 3000
      LANSTEP = 5000
     
-     TOL = 1.0D-8
+     TOL = 1.0D-5
       
      call pEVSL_Start_F90(mymatvec%comm,pevslAB)
      

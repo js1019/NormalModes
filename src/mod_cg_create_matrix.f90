@@ -151,7 +151,7 @@ module cg_create_matrix_mod
     ! for fluid surface integral
     real(kind=rkind)                                    :: surfrho,sgn
     real(kind=rkind), dimension(pin%f%Nfp)              :: surfgn
-    real(kind=rkind), dimension(pin%f%Nfp,pin%f%Nfp)    :: surfp     
+    real(kind=rkind), dimension(pin%f%Nfp,pin%f%Nfp)    :: surfp,difg     
 
 
     dm   = 3; les = pin%s%pNp*dm; 
@@ -483,7 +483,7 @@ module cg_create_matrix_mod
           !Mrho = Mrho/2.0D0
        
           !call diagmatrix(Mrho,dsqrt(rhot),pin%s%pNp)
-          !Mrho = matmul((matmul(Mrho,refs%MassM)),Mrho)      
+          !Mrho = matmul(matmul(Mrho,refs%MassM),Mrho)      
 
           ! save derivative matrix 
           fDv2  = fDerv
@@ -644,23 +644,26 @@ module cg_create_matrix_mod
              do i = 1,4 
                 if (unstrM%ClNeigh(i,k).eq.-1) then
                    ! the surface is at the boundary !!
-                   !surfrho = sum(models%coeff_loc((k-1)*pin%s%pNp+refs%Fmask(:,i),&
-                   !               models%p_rho))/real(pin%f%Nfp,8)
                    surfrho = sum(rhot(refs%Fmask(:,i)))/real(pin%f%Nfp,8)
                    surfgn  = 0.0D0
-                   !do j = 1,3
-                   !   surfgn = surfgn + gk1(refs%Fmask(:,i),j)**2
-                   !enddo 
                    do j = 1,3
+                      !surfgn = surfgn + gk1(refs%Fmask(:,i),j)**2
                       surfgn = surfgn-gk1(refs%Fmask(:,i),j)*unstrM%loc_n(j,i,k)
-                   enddo 
-                   sgn = sum(surfgn)/real(pin%f%Nfp,8) 
+                   enddo
+                   surfgn = surfgn**2 
                    !print*, surfrho,surfgn,i,k
                    !print*, surfrho,sgn*1.0D3,i,k
-                   surfp = - refs%MassF(:,:,i)/sgn/surfrho!*1.D3
+                   sgn = sum(dsqrt(surfgn))/real(pin%f%Nfp,8) 
+                   surfp =  refs%MassF(:,:,i)/sgn/surfrho!*1.D3
+                   !do j = 1,3
+                   !   surfgn = surfgn-gk1(refs%Fmask(:,i),j)*unstrM%loc_n(j,i,k)
+                   !enddo
+                   !surfgn = 1.0D0/dsqrt(dabs(surfgn)*rhot(refs%Fmask(:,i)))
+                   !call diagmatrix(difg,surfgn,pin%f%Nfp)
+                   !surfp =  matmul(matmul(difg,refs%MassF(:,:,i)),difg)  
                    FT(3*pin%s%pNp+refs%Fmask(:,i),3*pin%s%pNp+refs%Fmask(:,i)) =&
                    FT(3*pin%s%pNp+refs%Fmask(:,i),3*pin%s%pNp+refs%Fmask(:,i)) +&
-                            surfp*unstrM%loc_sJac(i,k) 
+                           - surfp*unstrM%loc_sJac(i,k) 
                 else ! todo check fluid-solid boundary
                    ! the surface is at the boundary !!
                    !surfrho = sum(models%coeff_loc((k-1)*pin%s%pNp+refs%Fmask(:,i),&
