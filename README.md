@@ -16,11 +16,18 @@ If you look for the code for the competition, please see SCC19 version in the re
 
 ## Outcome of this work
 Many different modes are expected. Please see below for selected normal modes computed from a standard spherically symmetric Earth model.
-
-<img src="figs/PREM2M_J2_0S2.png" width="212"/> <img src="figs/PREM2M_J2_0S3.png" width="212"/> <img src="figs/PREM2M_J2_0S5.png" width="212"/> <img src="figs/PREM2M_J2_0S7.png" width="212"/> 
-<img src="figs/PREM2M_J2_1S3.png" width="212"/> <img src="figs/PREM2M_J2_1S4.png" width="212"/> <img src="figs/PREM2M_J2_1S6.png" width="212"/> <img src="figs/PREM2M_J2_1S9.png" width="212"/> 
-<img src="figs/PREM2M_J2_2S3.png" width="212"/> <img src="figs/PREM2M_J2_3S3.png" width="212"/> <img src="figs/PREM2M_J2_4S3.png" width="212"/> <img src="figs/PREM2M_J2_5S3.png" width="212"/> 
-<img src="figs/PREM2M_J2_0T2.png" width="212"/> <img src="figs/PREM2M_J2_1T1.png" width="212"/> <img src="figs/PREM2M_J2_1T2.png" width="212"/> <img src="figs/PREM2M_J2_2T4.png" width="212"/> 
+<p align="center">
+<img src="figs/PREM2M_J2_0S2.png" width="200"/> <img src="figs/PREM2M_J2_0S3.png" width="200"/> <img src="figs/PREM2M_J2_0S5.png" width="200"/> <img src="figs/PREM2M_J2_0S7.png" width="200"/> 
+</p>
+<p align="center">
+<img src="figs/PREM2M_J2_1S3.png" width="200"/> <img src="figs/PREM2M_J2_1S4.png" width="200"/> <img src="figs/PREM2M_J2_1S6.png" width="200"/> <img src="figs/PREM2M_J2_1S9.png" width="200"/> 
+</p>
+<p align="center">
+<img src="figs/PREM2M_J2_2S3.png" width="200"/> <img src="figs/PREM2M_J2_3S3.png" width="200"/> <img src="figs/PREM2M_J2_4S3.png" width="200"/> <img src="figs/PREM2M_J2_5S3.png" width="200"/> 
+</p>
+<p align="center">
+<img src="figs/PREM2M_J2_0T2.png" width="200"/> <img src="figs/PREM2M_J2_1T1.png" width="200"/> <img src="figs/PREM2M_J2_1T2.png" width="200"/> <img src="figs/PREM2M_J2_2T4.png" width="200"/> 
+</p>
 
 
 ## A note on the design of this application 
