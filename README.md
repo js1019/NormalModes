@@ -68,6 +68,8 @@ The eigenfunctions will be saved in the binary format. Please check the README.m
 <img src="figs/PREM3S9.gif" width="400"/> <img src="figs/PREM1T11.gif" width="400"/> 
 </p>
 
+You can also use the [*NMPostProcess*](https://github.com/harrymd/NMPostProcess) library to visualize modes and automatically identify them.
+
 ## Reference
 The repository and pEVSL contain codes to compute planetary normal modes for [our SuperComputing (SC'18) paper](https://dl.acm.org/citation.cfm?id=3291751), where the parallel strong and weak scalabilities are shown. 
 ~~~
