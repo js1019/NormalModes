@@ -71,43 +71,10 @@ The eigenfunctions will be saved in the binary format. Please check the README.m
 You can also use the [*NMPostProcess*](https://github.com/harrymd/NMPostProcess) library to visualize modes and automatically identify them.
 
 ## Reference
-+ The repository and pEVSL contain codes to compute planetary normal modes for [our SuperComputing (SC'18) paper](https://dl.acm.org/citation.cfm?id=3291751), where the parallel strong and weak scalabilities are shown: 
-~~~
-@inproceedings{shi2018computing,
-  title={Computing planetary interior normal modes with a highly parallel polynomial filtering eigensolver},
-  author={Shi, Jia and Li, Ruipeng and Xi, Yuanzhe and Saad, Yousef and de Hoop, Maarten V.},
-  booktitle={SC18: International Conference for High Performance Computing, Networking, Storage and Analysis},
-  pages={894--906},
-  year={2018},
-  organization={IEEE}
-}
-~~~
++ _**Theory, discretization and validation:**_ Shi, Jia, Ruipeng Li, Yuanzhe Xi, Yousef Saad, and Maarten V. de Hoop. "A non-perturbative approach to computing seismic normal modes in rotating planets." arXiv preprint arXiv:1906.11082 (2021), [the preprint](https://arxiv.org/abs/1906.11082).
++ _**Reproducibility, summary and discussion of the student cluster competition results:**_ Shi, Jia, Ruipeng Li, Yuanzhe Xi, Yousef Saad, and Maarten V. de Hoop. "Planetary normal mode computation: Parallel algorithms, performance, and reproducibility." IEEE Transactions on Parallel and Distributed Systems, 32, no. 11 (2021): 2609-2622, [the IEEE TPDS paper link](https://ieeexplore.ieee.org/abstract/document/9319555). 
++ _**Parallel performace and algorithm:**_ Shi, Jia, Ruipeng Li, Yuanzhe Xi, Yousef Saad, and Maarten V. de Hoop. "**Computing planetary interior normal modes with a highly parallel polynomial filtering eigensolver.**" In SC18: International Conference for High Performance Computing, Networking, Storage and Analysis, pp. 894-906. IEEE, 2018, [the SC18 paper link](https://dl.acm.org/citation.cfm?id=3291751).
 
-+ The theory, discretization and validation of our work are described in [a separate paper](https://arxiv.org/abs/1906.11082) on arXiv: 
-~~~
-@article{shi2020normalmodes,
-  title{A Rayleigh-Ritz-method-based approach to computing seismic normal modes in rotating terrestrial planets},
-  author={Shi, Jia and Li, Ruipeng and Xi, Yuanzhe and Saad, Yousef and de Hoop, Maarten V.},
-  journal={arXiv preprint arXiv:1906.11082},
-  year={2020}
-}
-~~~
-
-+ The reproducibility, summary and discussion of the student cluster competition results can be found in [this IEEE TPDS paper](https://ieeexplore.ieee.org/abstract/document/9319555): 
-~~~
-@article{shi2021planetary,
-  title={Planetary normal mode computation: Parallel algorithms, performance, and reproducibility},
-  author={Shi, Jia and Li, Ruipeng and Xi, Yuanzhe and Saad, Yousef and de Hoop, Maarten V.},
-  journal={IEEE Transactions on Parallel and Distributed Systems},
-  volume={32},
-  number={11},
-  pages={2609--2622},
-  year={2021},
-  publisher={IEEE}
-}
-~~~
-
-+ The corresponding Moon and Mars models can be found via [this IEEE data port](https://ieee-dataport.org/documents/mars-and-moon-models-used-reproducibility-challenge-student-cluster-competition-sc19). 
 
 ## Contact 
 Please report issues under this repository. Contributions are welcome. 
