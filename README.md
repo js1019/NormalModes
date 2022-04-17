@@ -71,9 +71,9 @@ The eigenfunctions will be saved in the binary format. Please check the README.m
 You can also use the [*NMPostProcess*](https://github.com/harrymd/NMPostProcess) library to visualize modes and automatically identify them.
 
 ## Reference
-+ _**Theory, discretization and validation:**_ Shi, Jia, Ruipeng Li, Yuanzhe Xi, Yousef Saad, and Maarten V. de Hoop. "A non-perturbative approach to computing seismic normal modes in rotating planets." arXiv preprint arXiv:1906.11082 (2021), [the preprint](https://arxiv.org/abs/1906.11082).
-+ _**Reproducibility, summary and discussion of the student cluster competition results:**_ Shi, Jia, Ruipeng Li, Yuanzhe Xi, Yousef Saad, and Maarten V. de Hoop. "Planetary normal mode computation: Parallel algorithms, performance, and reproducibility." IEEE Transactions on Parallel and Distributed Systems, 32, no. 11 (2021): 2609-2622, [the IEEE TPDS paper link](https://ieeexplore.ieee.org/abstract/document/9319555). 
-+ _**Parallel performace and algorithms:**_ Shi, Jia, Ruipeng Li, Yuanzhe Xi, Yousef Saad, and Maarten V. de Hoop. "**Computing planetary interior normal modes with a highly parallel polynomial filtering eigensolver.**" In SC18: International Conference for High Performance Computing, Networking, Storage and Analysis, pp. 894-906. IEEE, 2018, [the SC18 paper link](https://dl.acm.org/citation.cfm?id=3291751).
++ [_**Theory, discretization and validation**_]: Jia Shi, Ruipeng Li, Yuanzhe Xi, Yousef Saad, and Maarten V. de Hoop. "A non-perturbative approach to computing seismic normal modes in rotating planets." Journal of Scientific Computing, 91:67, 2022, [the paper link](https://doi.org/10.1007/s10915-022-01836-5).
++ [_**Reproducibility, summary and discussion of the student cluster competition results**_]: Jia Shi, Ruipeng Li, Yuanzhe Xi, Yousef Saad, and Maarten V. de Hoop. "Planetary normal mode computation: Parallel algorithms, performance, and reproducibility." IEEE Transactions on Parallel and Distributed Systems, 32, no. 11 (2021): 2609-2622, [the paper link](https://ieeexplore.ieee.org/abstract/document/9319555). 
++ [_**Parallel performace and algorithms**_]: Jia Shi, Ruipeng Li, Yuanzhe Xi, Yousef Saad, and Maarten V. de Hoop. "Computing planetary interior normal modes with a highly parallel polynomial filtering eigensolver." In SC18: International Conference for High Performance Computing, Networking, Storage and Analysis, pp. 894-906. IEEE, 2018, [the paper link](https://dl.acm.org/citation.cfm?id=3291751).
 
 
 ## Contact 
