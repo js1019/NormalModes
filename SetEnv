@@ -1,0 +1,10 @@
+#---------- working directory
+
+#---------- modules and MUMPS ----------
+#module purge
+#module load intel/14.0.2.144 mvapich2/1.9
+#module load intel/17.0.1.132 
+#module load impi/2017.1.132
+
+#module load intel/18.0.0 impi/18.0.0
+

@@ -1,0 +1,124 @@
+HOME          = /work/04149/tg834482/stampede2/solver/intel18
+PARMETIS      = $(HOME)/ParMetis/parmetis-4.0.3
+
+EVSL_DIR      = $(HOME)/pEVSL_JS_cH
+LIBEVSL       = -L$(EVSL_DIR) -lpevsl  
+iterobj       = $(EVSL_DIR)/EXTERNAL/ITERSOL/chebiter.o
+
+# fmm
+FMM_DIR       = $(HOME)/exafmm-alpha/wrappers
+LIBFMM        = -L$(FMM_DIR)/libpetiga_exafmm_laplace_a-petiga.o \
+                -L$(FMM_DIR) -lpetiga_exafmm_laplace -lstdc++ -liomp5 -ltbb 
+#LIBFMM        = -ansi_alias -L$(FMM_DIR) -lcharmm_exafmm -lstdc++ -lgomp #-ltbb 
+
+
+#  The platform identifier to suffix to the end of library names
+#
+PLAT          = stampede2
+
+# lapack and blas
+#MKLPATH   =  /apps/rhel6/intel/composer_xe_2013.3.163/mkl/lib/intel64
+#LINKS    := ${MKLROOT}/lib/intel64/libmkl_blas95_ilp64.a ${MKLROOT}/lib/intel64/libmkl_lapack95_ilp64.a  
+#LINKS    := $(LINKS) -lmkl_scalapack_lp64 -lmkl_blacs_intelmpi_lp64 -liomp5 -lm -ldl
+LINKS     = -Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_lp64.a \
+           ${MKLROOT}/lib/intel64/libmkl_intel_thread.a ${MKLROOT}/lib/intel64/libmkl_core.a \
+           ${MKLROOT}/lib/intel64/libmkl_blacs_intelmpi_lp64.a -Wl,--end-group -liomp5 -lpthread -lm -ldl
+
+#LINKS     := -llapack -lblas
+#LINKS     := /home/ruipeng/workspace/OpenBLAS/libopenblas.a
+#LINKS     := /home/shi126/solver/OpenBLAS/libopenblas.a
+
+#LAPACKLIB =  $(MKLPATH)/libmkl_lapack95_lp64.a 
+#BLASLIB   =  $(MKLPATH)/libmkl_blacs_lp64.a
+
+IMETIS = -I$(PARMETIS)/build/Linux-x86_64/metis/include 
+IPARMETIS = -I$(PARMETIS)/include
+
+#------------------------------------------------------------------
+# MUMPS links
+
+#LPORDDIR  = $(MUMPS)/PORD/lib/
+#IPORD     = -I$(MUMPS)/PORD/include/
+#LPORD     = -L$(LPORDDIR) -lpord
+LMETIS    = -L$(PARMETIS)/build/Linux-x86_64/libmetis -lmetis
+LParMETIS = -L$(PARMETIS)/build/Linux-x86_64/libparmetis -lparmetis
+#LORDERINGS = $(LParMETIS) $(LMETIS) $(LPORD) -lpthread
+LORDERINGS = $(LParMETIS) $(LMETIS) -lpthread
+OPTL     =  -O3 -fopenmp
+#MUMPSLIB = $(MUMPS)/lib/libdmumps.a $(MUMPS)/lib/libmumps_common.a
+#FIFLAGS = -I$(MUMPS)/include/
+ 
+#-----------------------------------------------------------------
+
+#FDEBUG = -O0 -fpp -c -BC -g -traceback -check all -debug all
+FDEBUG = -c
+
+#  Make our own suffixes' list.
+#
+.SUFFIXES:
+.SUFFIXES:	.f	.o
+.SUFFIXES:	.F	.f
+.SUFFIXES:	.f90	.o
+#
+#  Default command.
+#
+.DEFAULT:
+	@$(ECHO) "Unknown target $@, try:  make help"
+
+#
+#  Command to build .o files from .f files.
+#
+.f90.o:
+	@$(ECHO) Making $@ from $<
+	@$(FC) -c $(FIFLAGS) $<
+
+FC	= mpiifort
+FFLAGS	= -O3 #-cg89
+
+# Set the parallel fortran compiler
+PFC     = mpiifort #mpif90 #mpiifort
+PFFLAGS = -O3 #-cg89
+
+PCC      = mpiicc
+
+LDFLAGS = $(LINKS) 
+CD	= cd
+AR      = ar
+
+CHMOD	 = chmod
+CHFLAGS	 = -f
+
+COMPRESS = compress
+
+CP	 = cp
+
+#  To find the path for cpp, try `man cpp', and it should list the path
+#  at the top, under `Syntax'.  It is usually in /lib.
+CPP	 = /lib/cpp
+CPPFLAGS =
+
+ECHO	 = echo
+
+LN	 = ln
+LNFLAGS	 = -s
+
+MAKE	 = /usr/bin/make
+
+MKDIR	 = mkdir
+MDFLAGS	 = -p
+
+MV	 = mv
+MVFLAGS	 = -f
+
+RM	 = rm
+RMFLAGS  = -f
+
+SHELL	 = /bin/sh
+
+TAR	 = tar
+
+#  For System V based machine without ranlib, like Cray and SGI, 
+#  use touch instead.
+#RANLIB   = touch
+RANLIB   = ranlib
+

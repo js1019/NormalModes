@@ -1,0 +1,29 @@
+# JOB: computational options:
+# 1: without gravity
+# 2: with reference gravity (Cowling approximation)
+# 3: with perturbation of the gravity in the mat-vec (accurate)
+# 4: with perturbation of the gravity after filtering (faster, less accurate)
+# 5: 1 + rotation
+# 6: 2 + rotation
+# 7: 3 + rotation
+# 8: 4 + rotation
+JOB         = 4
+#basename     = Moon_6L_100k.1
+basename  = E1066a_3L_3k.1
+
+#inputdir   = /scratch/04149/tg834482/Moon/input/FMMG/Moon6L100k/
+#outputdir  = /scratch/04149/tg834482/Moon/output/Moon6L100k/ 
+
+inputdir   = /scratch/04149/tg834482/Rotation/input2/E1066a3k/
+outputdir  = /scratch/04149/tg834482/Rotation/output2/E1066a3k/ 
+ 
+period = 23.9345 # unit hours
+
+lowfreq = 0.1 # unit mHz 
+upfreq  = 3.0 # unit mHz
+pOrder  = 1   # order of polynomial basis
+
+N2      = .FALSE. # FALSE the Brunt-Vaisala frequency N^2 = 0; TRUE N^2 will be computed
+SAVE    = .TRUE. # save eigenvectors
+
+
